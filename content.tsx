@@ -18,16 +18,16 @@ function DocButon() {
   const [rev, changeRev] = useState([null, false])
   const [cop, changeCop] = useState([null, false])
   const [per, changePer] = useState([null, false])
-  const [tok, changeTok] = useState("")
   const [docdata, changeDocData] = useState({})
-
+  const [tok, changeTok] = useState("")
+  const [documentId, changeDocumentId] = useState("")
   useEffect(() => {
     const url = window.location.href
-    console.log(typeof url)
-    console.log(document)
+    // console.log(typeof url)
+    // console.log(document)
     const matching = url.match("/document/d/([^/]+)/")
     if (matching) {
-      const documentId = matching[1]
+      changeDocumentId(matching[1])
       const targetNode = document.body
       const config = { attributes: true }
 
@@ -37,25 +37,31 @@ function DocButon() {
             mutation.type === "attributes" &&
             mutation.attributeName === "tok"
           ) {
-            changeTok(targetNode.getAttribute("tok"))
+            // console.log("tok changed" + targetNode.getAttribute("tok"))
+            const token = targetNode.getAttribute("tok")
+            changeTok(token)
             observer.disconnect()
           }
         }
       }
-
       const observer = new MutationObserver(callback)
-
       observer.observe(targetNode, config)
+    } else {
+      console.log("somthing is wrong, Try again")
+    }
+  }, [])
 
+  useEffect(() => {
+    if (tok !== "" && documentId !== "") {
       fetch(
-        `https://docs.google.com/document/d/${documentId}/revisions/tiles?id=${documentId}&start=1&showDetailedRevisions=false&filterNamed=false&token=${tok}&includes_info_params=true`
+        `https://docs.google.com/document/d/${documentId}/revisions/tiles?id=${documentId}&start=1&showDetailedRevisions=false&token=${tok}`
       )
         .then((response) => {
           if (!response.ok) {
             console.log("error")
             console.log(response.statusText)
           }
-          return response.json()
+          return response.text()
         })
         .then((data) => {
           changeDocData(data)
@@ -66,17 +72,15 @@ function DocButon() {
               error
           )
         })
-    } else {
-      console.log("somthing is wrong, Try again")
     }
-  }, [])
+  }, [tok])
 
   useEffect(() => {
+    console.log(docdata)
     const buttonStyle = document.createElement("style")
     buttonStyle.innerHTML = cssText
     document.head.appendChild(buttonStyle)
-    const button = document.querySelector("doc-button")
-  }, [rev, cop, per])
+  }, [docdata])
 
   const handleClick = () => {
     console.log("Button clicked")
