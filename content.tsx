@@ -18,9 +18,10 @@ function DocButon() {
   const [rev, changeRev] = useState([null, false])
   const [cop, changeCop] = useState([null, false])
   const [per, changePer] = useState([null, false])
-  const [docdata, changeDocData] = useState({})
+  const [docdata, changeDocData] = useState("")
   const [tok, changeTok] = useState("")
   const [documentId, changeDocumentId] = useState("")
+
   useEffect(() => {
     const url = window.location.href
     // console.log(typeof url)
@@ -76,7 +77,31 @@ function DocButon() {
   }, [tok])
 
   useEffect(() => {
-    console.log(docdata)
+    if (docdata.includes(")]}'")) {
+      const data = JSON.parse(docdata.replace(")]}'\n", ""))
+      const numOfChange = data["tileInfo"].at(-1)["end"]
+      changeRev(numOfChange)
+
+      fetch(
+        `https://docs.google.com/document/d/${documentId}/revisions/load?id=${documentId}&showDetailedRevisions=false&end=${numOfChange}&start=1`
+      )
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(
+              "Network response was not ok " + response.statusText
+            )
+          }
+          return response.text()
+        })
+        .then((data) => {
+          console.log(data)
+          const dataRev = JSON.parse(docdata.replace(")]}'\n", ""))
+        })
+        .catch((error) => {
+          console.error("Fetch operation error:", error)
+        })
+    }
+
     const buttonStyle = document.createElement("style")
     buttonStyle.innerHTML = cssText
     document.head.appendChild(buttonStyle)
