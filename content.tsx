@@ -96,7 +96,6 @@ function DocButon() {
           return response.text()
         })
         .then((data) => {
-          console.log(data)
           const dataRev = JSON.parse(data.replace(")]}'\n", ""))
           console.log(dataRev)
           dataRev.changelog.map((data) => {
@@ -104,7 +103,16 @@ function DocButon() {
               Object.keys(data[0]).includes("mts") &&
               data[0]["mts"].length == 2
             ) {
-              console.log(data[0]["mts"])
+              for (let i = 0; i < data[0]["mts"].length; i++) {
+                console.log(data[0]["mts"][i])
+                if (data[0]["mts"][i]["ty"] == "is") {
+                  console.log(data[0]["mts"][i]["s"])
+                  console.log(data[0]["mts"][i]["ibi"])
+                } else if (data[0]["mts"][i]["ty"] == "mlti") {
+                  console.log(data[0]["mts"][i]["mts"][0])
+                  console.log(data[0]["mts"][i]["ibi"][0])
+                }
+              }
             }
           })
         })
