@@ -78,12 +78,14 @@ function DocButon() {
 
   useEffect(() => {
     if (docdata.includes(")]}'")) {
+      const parsedRevData = []
       const data = JSON.parse(docdata.replace(")]}'\n", ""))
+      const userMap = data["userMap"]
       const numOfChange = data["tileInfo"].at(-1)["end"]
       changeRev(numOfChange)
 
       fetch(
-        `https://docs.google.com/document/d/${documentId}/revisions/load?id=${documentId}&showDetailedRevisions=false&end=${numOfChange}&start=1`
+        `https://docs.google.com/document/d/${documentId}/revisions/load?id=${documentId}&start=1&end=${numOfChange}`
       )
         .then((response) => {
           if (!response.ok) {
@@ -95,7 +97,16 @@ function DocButon() {
         })
         .then((data) => {
           console.log(data)
-          const dataRev = JSON.parse(docdata.replace(")]}'\n", ""))
+          const dataRev = JSON.parse(data.replace(")]}'\n", ""))
+          console.log(dataRev)
+          dataRev.changelog.map((data) => {
+            if (
+              Object.keys(data[0]).includes("mts") &&
+              data[0]["mts"].length == 2
+            ) {
+              console.log(data[0]["mts"])
+            }
+          })
         })
         .catch((error) => {
           console.error("Fetch operation error:", error)
