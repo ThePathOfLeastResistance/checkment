@@ -83,6 +83,7 @@ function DocButon() {
       const userMap = data["userMap"]
       const numOfChange = data["tileInfo"].at(-1)["end"]
       changeRev(numOfChange)
+      console.log(userMap)
 
       fetch(
         `https://docs.google.com/document/d/${documentId}/revisions/load?id=${documentId}&start=1&end=${numOfChange}`
@@ -99,20 +100,26 @@ function DocButon() {
           const dataRev = JSON.parse(data.replace(")]}'\n", ""))
           console.log(dataRev)
           dataRev.changelog.map((data) => {
-            if (
-              Object.keys(data[0]).includes("mts") &&
-              data[0]["mts"].length == 2
-            ) {
-              for (let i = 0; i < data[0]["mts"].length; i++) {
-                console.log(data[0]["mts"][i])
-                if (data[0]["mts"][i]["ty"] == "is") {
-                  console.log(data[0]["mts"][i]["s"])
-                  console.log(data[0]["mts"][i]["ibi"])
-                } else if (data[0]["mts"][i]["ty"] == "mlti") {
-                  console.log(data[0]["mts"][i]["mts"][0])
-                  console.log(data[0]["mts"][i]["ibi"][0])
+            if (Object.keys(userMap).length > 1) {
+              if (
+                Object.keys(data[0]).includes("mts") &&
+                data[0]["mts"].length == 2
+              ) {
+                for (let i = 1; i <= data[0]["mts"].length; i++) {
+                  if (data[0]["mts"][i]["ty"] == "is") {
+                    console.log(data[0]["mts"][i]["s"])
+                    console.log(data[0]["mts"][i]["ibi"])
+                  } else if (data[0]["mts"][i]["ty"] == "mlti") {
+                    console.log(data[0]["mts"][i]["mts"][0]["s"])
+                    console.log(data[0]["mts"][i]["mts"][0]["ibi"])
+                  }
+                  console.log(data[0]["mts"][i])
                 }
               }
+            } else if (Object.keys(userMap).length == 1) {
+              console.log(data[0])
+              console.log(data[1])
+              console.log(data[2])
             }
           })
         })
