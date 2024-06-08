@@ -87,6 +87,7 @@ function DocButon() {
       const data = JSON.parse(docdata.replace(")]}'\n", ""))
       const userMap = data["userMap"]
       const numOfChange = data["tileInfo"].at(-1)["end"]
+      let wirtingDataJson = []
       changeRev(numOfChange)
       console.log(userMap)
 
@@ -102,57 +103,48 @@ function DocButon() {
           return response.text()
         })
         .then((data) => {
-          console.log(data)
           const dataRev = JSON.parse(data.replace(")]}'\n", ""))
-          console.log(dataRev)
           for (let i = 1; i < dataRev.changelog.length; i++) {
-            let wirtingDataJson = {}
             const data = dataRev.changelog[i]
             const time = converTime(data[1])
             const user = data[2]
             let index = null
             let text = null
-            console.log("time: " + time)
-            console.log("user: " + user)
-            console.log(data[0])
             if (Object.keys(data[0]).includes("mts")) {
               for (let i = 1; i < Object.keys(data[0]["mts"]).length; i++) {
                 if (data[0]["mts"][i]["ty"] == "is") {
                   text = data[0]["mts"][i]["s"]
                   index = data[0]["mts"][i]["ibi"]
-                  console.log(text, index)
+                  wirtingDataJson.push({ time, user, text, index })
                 } else if (data[0]["mts"][i]["ty"] == "mlti") {
                   for (let k = 0; k < data[0]["mts"][i]["mts"].length; k++) {
                     if (data[0]["mts"][i]["mts"][k]["ty"] == "is") {
                       text = data[0]["mts"][i]["mts"][k]["s"]
                       index = data[0]["mts"][i]["mts"][k]["ibi"]
-                      console.log(text, index)
-                      console.log(data[0]["mts"][i]["mts"][k])
+                      wirtingDataJson.push({ time, user, text, index })
                     } else if (data[0]["mts"][i]["mts"][k]["ty"] == "ds") {
-                      text = "delete"
+                      text = "ds"
                       index = [
                         data[0]["mts"][i]["mts"][k]["si"],
                         data[0]["mts"][i]["mts"][k]["ei"]
                       ]
-                      console.log(text, index)
-                      console.log(data[0]["mts"][i]["mts"][k])
+                      wirtingDataJson.push({ time, user, text, index })
                     }
                   }
                 } else if (data[0]["mts"][i]["ty"] == "ds") {
-                  text = "delete"
+                  text = "ds"
                   index = [data[0]["mts"][i].si, data[0]["mts"][i].ei]
-                  console.log(text, index)
-                  console.log(data[0]["mts"][i])
+                  wirtingDataJson.push({ time, user, text, index })
                 }
               }
             } else if (Object.keys(data[0]).includes("ty")) {
               if (data[0]["ty"] == "is") {
-                console.log(data[0].s)
-                console.log(data[0].ibi)
+                text = data[0].s
+                index = data[0].ibi
+                wirtingDataJson.push({ time, user, text, index })
               } else if (data[0]["ty"] == "ds") {
-                console.log("delete" + data[0].si)
-              } else if (data[0]["ty"] == "as") {
-                console.log("blank page")
+                index = [data[0].si, data[0].ei]
+                wirtingDataJson.push({ time, user, text, index })
               }
             }
           }
@@ -160,6 +152,8 @@ function DocButon() {
         .catch((error) => {
           console.error("Fetch operation error:", error)
         })
+      console.log(wirtingDataJson)
+      console.log("sdafasdf")
     }
 
     const buttonStyle = document.createElement("style")
