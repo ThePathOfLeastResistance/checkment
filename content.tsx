@@ -91,9 +91,6 @@ function DocButon() {
       const userMap = data["userMap"]
       const numOfChange = data["tileInfo"].at(-1)["end"]
       let wirtingDataJson = []
-      changeRev(numOfChange)
-      console.log(userMap)
-
       fetch(
         `https://docs.google.com/document/d/${documentId}/revisions/load?id=${documentId}&start=1&end=${numOfChange}`
       )
@@ -112,9 +109,6 @@ function DocButon() {
             const [date, time] = converTime(data[1])
             const user = data[2]
 
-            // only for testing
-            let breadcrumb = null
-
             let index = null
             let text = null
             if (Object.keys(data[0]).includes("mts")) {
@@ -122,28 +116,24 @@ function DocButon() {
                 if (data[0]["mts"][i]["ty"] == "is") {
                   text = data[0]["mts"][i]["s"]
                   index = data[0]["mts"][i]["ibi"]
-                  breadcrumb = data[0]["mts"][i]
                   wirtingDataJson.push({
                     date,
                     time,
                     user,
                     text,
-                    index,
-                    breadcrumb
+                    index
                   })
                 } else if (data[0]["mts"][i]["ty"] == "mlti") {
                   for (let k = 0; k < data[0]["mts"][i]["mts"].length; k++) {
                     if (data[0]["mts"][i]["mts"][k]["ty"] == "is") {
                       text = data[0]["mts"][i]["mts"][k]["s"]
                       index = data[0]["mts"][i]["mts"][k]["ibi"]
-                      breadcrumb = data[0]["mts"][i]["mts"][k]
                       wirtingDataJson.push({
                         date,
                         time,
                         user,
                         text,
-                        index,
-                        breadcrumb
+                        index
                       })
                     } else if (data[0]["mts"][i]["mts"][k]["ty"] == "ds") {
                       text = "ds"
@@ -151,28 +141,24 @@ function DocButon() {
                         data[0]["mts"][i]["mts"][k]["si"],
                         data[0]["mts"][i]["mts"][k]["ei"]
                       ]
-                      breadcrumb = data[0]["mts"][i]["mts"][k]
                       wirtingDataJson.push({
                         date,
                         time,
                         user,
                         text,
-                        index,
-                        breadcrumb
+                        index
                       })
                     }
                   }
                 } else if (data[0]["mts"][i]["ty"] == "ds") {
                   text = "ds"
                   index = [data[0]["mts"][i].si, data[0]["mts"][i].ei]
-                  breadcrumb = data[0]["mts"][i]
                   wirtingDataJson.push({
                     date,
                     time,
                     user,
                     text,
-                    index,
-                    breadcrumb
+                    index
                   })
                 }
               }
@@ -180,26 +166,22 @@ function DocButon() {
               if (data[0]["ty"] == "is") {
                 text = data[0].s
                 index = data[0].ibi
-                breadcrumb = data[0]
                 wirtingDataJson.push({
                   date,
                   time,
                   user,
                   text,
-                  index,
-                  breadcrumb
+                  index
                 })
               } else if (data[0]["ty"] == "ds") {
                 text = "ds"
                 index = [data[0].si, data[0].ei]
-                breadcrumb = data[0]
                 wirtingDataJson.push({
                   date,
                   time,
                   user,
                   text,
-                  index,
-                  breadcrumb
+                  index
                 })
               }
             }
@@ -208,8 +190,6 @@ function DocButon() {
         .catch((error) => {
           console.error("Fetch operation error:", error)
         })
-      console.log(wirtingDataJson)
-      console.log("sdafasdf")
     }
 
     const buttonStyle = document.createElement("style")
