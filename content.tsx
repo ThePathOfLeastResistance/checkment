@@ -97,6 +97,7 @@ function DocButon() {
           return response.text()
         })
         .then((data) => {
+          console.log(data)
           const dataRev = JSON.parse(data.replace(")]}'\n", ""))
           console.log(dataRev)
           dataRev.changelog.map((data) => {
@@ -105,15 +106,18 @@ function DocButon() {
                 Object.keys(data[0]).includes("mts") &&
                 data[0]["mts"].length == 2
               ) {
-                for (let i = 1; i <= data[0]["mts"].length; i++) {
+                for (let i = 0; i < Object.keys(data[0]["mts"]).length; i++) {
                   if (data[0]["mts"][i]["ty"] == "is") {
                     console.log(data[0]["mts"][i]["s"])
                     console.log(data[0]["mts"][i]["ibi"])
                   } else if (data[0]["mts"][i]["ty"] == "mlti") {
-                    console.log(data[0]["mts"][i]["mts"][0]["s"])
-                    console.log(data[0]["mts"][i]["mts"][0]["ibi"])
+                    for (let k = 0; k < data[0]["mts"][i]["mts"].length; k++) {
+                      if (data[0]["mts"][i]["mts"][k]["ty"] == "is") {
+                        console.log(data[0]["mts"][i]["mts"][k]["s"])
+                        console.log(data[0]["mts"][i]["mts"][k]["ibi"])
+                      }
+                    }
                   }
-                  console.log(data[0]["mts"][i])
                 }
               }
             } else if (Object.keys(userMap).length == 1) {
