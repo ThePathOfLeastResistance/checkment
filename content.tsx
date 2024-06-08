@@ -119,6 +119,11 @@ function DocButon() {
                     if (data[0]["mts"][i]["mts"][k]["ty"] == "is") {
                       console.log(data[0]["mts"][i]["mts"][k]["s"])
                       console.log(data[0]["mts"][i]["mts"][k]["ibi"])
+                    } else if (data[0]["mts"][i]["mts"][k]["ty"] == "ds") {
+                      console.log("delete" + data[0]["mts"][i]["mts"][k]["si"])
+                    } else if (data[0]["mts"][i]["mts"][k]["ty"] == "as") {
+                      console.log("blank page/newpage")
+                      console.log(data[0]["mts"][i]["mts"][k])
                     }
                   }
                 }
