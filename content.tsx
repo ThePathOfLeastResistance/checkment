@@ -14,6 +14,11 @@ export const config: PlasmoCSConfig = {
   matches: ["https://docs.google.com/document/*"]
 }
 
+function converTime(time: number) {
+  const date = new Date(time)
+  return date
+}
+
 function DocButon() {
   const [rev, changeRev] = useState([null, false])
   const [cop, changeCop] = useState([null, false])
@@ -101,31 +106,43 @@ function DocButon() {
           const dataRev = JSON.parse(data.replace(")]}'\n", ""))
           console.log(dataRev)
           for (let i = 1; i < dataRev.changelog.length; i++) {
+            let wirtingDataJson = {}
             const data = dataRev.changelog[i]
-            const time = data[1]
+            const time = converTime(data[1])
             const user = data[2]
+            let index = null
+            let text = null
             console.log("time: " + time)
             console.log("user: " + user)
-            if (
-              Object.keys(data[0]).includes("mts") &&
-              data[0]["mts"].length == 2
-            ) {
+            console.log(data[0])
+            if (Object.keys(data[0]).includes("mts")) {
               for (let i = 1; i < Object.keys(data[0]["mts"]).length; i++) {
                 if (data[0]["mts"][i]["ty"] == "is") {
-                  console.log(data[0]["mts"][i]["s"])
-                  console.log(data[0]["mts"][i]["ibi"])
+                  text = data[0]["mts"][i]["s"]
+                  index = data[0]["mts"][i]["ibi"]
+                  console.log(text, index)
                 } else if (data[0]["mts"][i]["ty"] == "mlti") {
                   for (let k = 0; k < data[0]["mts"][i]["mts"].length; k++) {
                     if (data[0]["mts"][i]["mts"][k]["ty"] == "is") {
-                      console.log(data[0]["mts"][i]["mts"][k]["s"])
-                      console.log(data[0]["mts"][i]["mts"][k]["ibi"])
+                      text = data[0]["mts"][i]["mts"][k]["s"]
+                      index = data[0]["mts"][i]["mts"][k]["ibi"]
+                      console.log(text, index)
+                      console.log(data[0]["mts"][i]["mts"][k])
                     } else if (data[0]["mts"][i]["mts"][k]["ty"] == "ds") {
-                      console.log("delete" + data[0]["mts"][i]["mts"][k]["si"])
-                    } else if (data[0]["mts"][i]["mts"][k]["ty"] == "as") {
-                      console.log("blank page/newpage")
+                      text = "delete"
+                      index = [
+                        data[0]["mts"][i]["mts"][k]["si"],
+                        data[0]["mts"][i]["mts"][k]["ei"]
+                      ]
+                      console.log(text, index)
                       console.log(data[0]["mts"][i]["mts"][k])
                     }
                   }
+                } else if (data[0]["mts"][i]["ty"] == "ds") {
+                  text = "delete"
+                  index = [data[0]["mts"][i].si, data[0]["mts"][i].ei]
+                  console.log(text, index)
+                  console.log(data[0]["mts"][i])
                 }
               }
             } else if (Object.keys(data[0]).includes("ty")) {
