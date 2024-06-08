@@ -120,8 +120,13 @@ function DocButon() {
                   }
                 }
               }
-            } else if (Object.keys(userMap).length == 1) {
-              console.log(data[0])
+            } else if (
+              Object.keys(userMap).length == 1 &&
+              Object.keys(data[0]).length == 2
+            ) {
+              console.log(data)
+              console.log(data[0].s)
+              console.log(data[0].ibi)
               console.log(data[1])
               console.log(data[2])
             }
