@@ -100,37 +100,40 @@ function DocButon() {
           console.log(data)
           const dataRev = JSON.parse(data.replace(")]}'\n", ""))
           console.log(dataRev)
-          dataRev.changelog.map((data) => {
-            if (Object.keys(userMap).length > 1) {
-              if (
-                Object.keys(data[0]).includes("mts") &&
-                data[0]["mts"].length == 2
-              ) {
-                for (let i = 0; i < Object.keys(data[0]["mts"]).length; i++) {
-                  if (data[0]["mts"][i]["ty"] == "is") {
-                    console.log(data[0]["mts"][i]["s"])
-                    console.log(data[0]["mts"][i]["ibi"])
-                  } else if (data[0]["mts"][i]["ty"] == "mlti") {
-                    for (let k = 0; k < data[0]["mts"][i]["mts"].length; k++) {
-                      if (data[0]["mts"][i]["mts"][k]["ty"] == "is") {
-                        console.log(data[0]["mts"][i]["mts"][k]["s"])
-                        console.log(data[0]["mts"][i]["mts"][k]["ibi"])
-                      }
+          for (let i = 1; i < dataRev.changelog.length; i++) {
+            const data = dataRev.changelog[i]
+            const time = data[1]
+            const user = data[2]
+            console.log("time: " + time)
+            console.log("user: " + user)
+            if (
+              Object.keys(data[0]).includes("mts") &&
+              data[0]["mts"].length == 2
+            ) {
+              for (let i = 1; i < Object.keys(data[0]["mts"]).length; i++) {
+                if (data[0]["mts"][i]["ty"] == "is") {
+                  console.log(data[0]["mts"][i]["s"])
+                  console.log(data[0]["mts"][i]["ibi"])
+                } else if (data[0]["mts"][i]["ty"] == "mlti") {
+                  for (let k = 0; k < data[0]["mts"][i]["mts"].length; k++) {
+                    if (data[0]["mts"][i]["mts"][k]["ty"] == "is") {
+                      console.log(data[0]["mts"][i]["mts"][k]["s"])
+                      console.log(data[0]["mts"][i]["mts"][k]["ibi"])
                     }
                   }
                 }
               }
-            } else if (
-              Object.keys(userMap).length == 1 &&
-              Object.keys(data[0]).length == 2
-            ) {
-              console.log(data)
-              console.log(data[0].s)
-              console.log(data[0].ibi)
-              console.log(data[1])
-              console.log(data[2])
+            } else if (Object.keys(data[0]).includes("ty")) {
+              if (data[0]["ty"] == "is") {
+                console.log(data[0].s)
+                console.log(data[0].ibi)
+              } else if (data[0]["ty"] == "ds") {
+                console.log("delete" + data[0].si)
+              } else if (data[0]["ty"] == "as") {
+                console.log("blank page")
+              }
             }
-          })
+          }
         })
         .catch((error) => {
           console.error("Fetch operation error:", error)
