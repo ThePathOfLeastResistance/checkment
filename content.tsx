@@ -6,17 +6,20 @@ import { useEffect, useState } from "react"
 import { render } from "react-dom"
 import { createRoot } from "react-dom/client"
 
-const hel = "dssdfaasdfasdf"
-
-const hello = "hasdl"
+// todofix the part where it turns null
 
 export const config: PlasmoCSConfig = {
   matches: ["https://docs.google.com/document/*"]
 }
 
-function converTime(time: number) {
-  const date = new Date(time)
-  return date
+function converTime(input: number) {
+  const data = new Date(input)
+  console.log(data.toLocaleString())
+  ;("6/7/2024, 11:18:43 PM")
+  const date = data.toLocaleString().split(",")[0]
+  const timedata = data.toLocaleString().split(",")[1].split(" ")
+  const time = timedata[0].split(":").slice(0, 2) + timedata[1]
+  return [date, time]
 }
 
 function DocButon() {
@@ -106,8 +109,12 @@ function DocButon() {
           const dataRev = JSON.parse(data.replace(")]}'\n", ""))
           for (let i = 1; i < dataRev.changelog.length; i++) {
             const data = dataRev.changelog[i]
-            const time = converTime(data[1])
+            const [date, time] = converTime(data[1])
             const user = data[2]
+
+            // only for testing
+            let breadcrumb = null
+
             let index = null
             let text = null
             if (Object.keys(data[0]).includes("mts")) {
@@ -115,36 +122,85 @@ function DocButon() {
                 if (data[0]["mts"][i]["ty"] == "is") {
                   text = data[0]["mts"][i]["s"]
                   index = data[0]["mts"][i]["ibi"]
-                  wirtingDataJson.push({ time, user, text, index })
+                  breadcrumb = data[0]["mts"][i]
+                  wirtingDataJson.push({
+                    date,
+                    time,
+                    user,
+                    text,
+                    index,
+                    breadcrumb
+                  })
                 } else if (data[0]["mts"][i]["ty"] == "mlti") {
                   for (let k = 0; k < data[0]["mts"][i]["mts"].length; k++) {
                     if (data[0]["mts"][i]["mts"][k]["ty"] == "is") {
                       text = data[0]["mts"][i]["mts"][k]["s"]
                       index = data[0]["mts"][i]["mts"][k]["ibi"]
-                      wirtingDataJson.push({ time, user, text, index })
+                      breadcrumb = data[0]["mts"][i]["mts"][k]
+                      wirtingDataJson.push({
+                        date,
+                        time,
+                        user,
+                        text,
+                        index,
+                        breadcrumb
+                      })
                     } else if (data[0]["mts"][i]["mts"][k]["ty"] == "ds") {
                       text = "ds"
                       index = [
                         data[0]["mts"][i]["mts"][k]["si"],
                         data[0]["mts"][i]["mts"][k]["ei"]
                       ]
-                      wirtingDataJson.push({ time, user, text, index })
+                      breadcrumb = data[0]["mts"][i]["mts"][k]
+                      wirtingDataJson.push({
+                        date,
+                        time,
+                        user,
+                        text,
+                        index,
+                        breadcrumb
+                      })
                     }
                   }
                 } else if (data[0]["mts"][i]["ty"] == "ds") {
                   text = "ds"
                   index = [data[0]["mts"][i].si, data[0]["mts"][i].ei]
-                  wirtingDataJson.push({ time, user, text, index })
+                  breadcrumb = data[0]["mts"][i]
+                  wirtingDataJson.push({
+                    date,
+                    time,
+                    user,
+                    text,
+                    index,
+                    breadcrumb
+                  })
                 }
               }
             } else if (Object.keys(data[0]).includes("ty")) {
               if (data[0]["ty"] == "is") {
                 text = data[0].s
                 index = data[0].ibi
-                wirtingDataJson.push({ time, user, text, index })
+                breadcrumb = data[0]
+                wirtingDataJson.push({
+                  date,
+                  time,
+                  user,
+                  text,
+                  index,
+                  breadcrumb
+                })
               } else if (data[0]["ty"] == "ds") {
+                text = "ds"
                 index = [data[0].si, data[0].ei]
-                wirtingDataJson.push({ time, user, text, index })
+                breadcrumb = data[0]
+                wirtingDataJson.push({
+                  date,
+                  time,
+                  user,
+                  text,
+                  index,
+                  breadcrumb
+                })
               }
             }
           }
