@@ -24,8 +24,10 @@ function converTime(input: number) {
 
 function DocButon() {
   const [rev, changeRev] = useState([null, null])
+  // this is the conidience for the user using chatgpt
   const [per, changePer] = useState([null, null])
   const [flaglog, changeflag] = useState(null)
+  const [tim, changetime] = useState(null)
   const [docdata, changeDocData] = useState("")
   const [tok, changeTok] = useState("")
   const [documentId, changeDocumentId] = useState("")
@@ -118,11 +120,17 @@ function DocButon() {
         .then((data) => {
           const dataRev = JSON.parse(data.replace(")]}'\n", ""))
           let flags = []
+          let totaltime = 0
           for (let i = 1; i < dataRev.changelog.length; i++) {
             const data = dataRev.changelog[i]
             const [date, time] = converTime(data[1])
             const user = data[2]
-
+            if (i >= 2) {
+              let dif = (data[1] - dataRev.changelog[i - 1][1]) / 60000
+              if (dif < 10) {
+                totaltime += dif
+              }
+            }
             let index = null
             let text = null
 
@@ -220,6 +228,7 @@ function DocButon() {
             }
           }
           changeflag(flags)
+          changetime(totaltime)
           console.log(flags)
         })
         .catch((error) => {
@@ -243,6 +252,7 @@ function DocButon() {
       <button className="doc-button" onClick={handleClick}>
         {rev[1] ? `Rev: ${rev[0]}` : ""}
         {`Copies: ${flaglog.length}`}
+        Time Spent:{Math.round(tim)} minutes
         {per[1] ? `Rev: ${per[0]}` : ""}
       </button>
     )
