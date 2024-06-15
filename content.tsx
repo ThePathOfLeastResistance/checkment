@@ -14,7 +14,7 @@ export const config: PlasmoCSConfig = {
 
 function converTime(input: number) {
   const data = new Date(input)
-  console.log(data.toLocaleString())
+  // console.log(data.toLocaleString())
   ;("6/7/2024, 11:18:43 PM")
   const date = data.toLocaleString().split(",")[0]
   const timedata = data.toLocaleString().split(",")[1].split(" ")
@@ -23,12 +23,23 @@ function converTime(input: number) {
 }
 
 function DocButon() {
-  const [rev, changeRev] = useState([null, false])
-  const [cop, changeCop] = useState([null, false])
-  const [per, changePer] = useState([null, false])
+  const [rev, changeRev] = useState([null, null])
+  const [cop, changeCop] = useState([null, null])
+  const [per, changePer] = useState([null, null])
+  const [flaglog, changeflag] = useState(null)
   const [docdata, changeDocData] = useState("")
   const [tok, changeTok] = useState("")
   const [documentId, changeDocumentId] = useState("")
+
+  function addRevData(list, date, time, user, text, index) {
+    list.push({
+      date,
+      time,
+      user,
+      text,
+      index
+    })
+  }
 
   useEffect(() => {
     const url = window.location.href
@@ -90,6 +101,9 @@ function DocButon() {
       const data = JSON.parse(docdata.replace(")]}'\n", ""))
       const userMap = data["userMap"]
       const numOfChange = data["tileInfo"].at(-1)["end"]
+      changeRev([numOfChange, true])
+      // console.log(numOfChange)
+      // console.log("asdjkfsdkajlfjkl")
       let wirtingDataJson = []
       fetch(
         `https://docs.google.com/document/d/${documentId}/revisions/load?id=${documentId}&start=1&end=${numOfChange}`
@@ -104,6 +118,7 @@ function DocButon() {
         })
         .then((data) => {
           const dataRev = JSON.parse(data.replace(")]}'\n", ""))
+          let flags = []
           for (let i = 1; i < dataRev.changelog.length; i++) {
             const data = dataRev.changelog[i]
             const [date, time] = converTime(data[1])
@@ -111,10 +126,14 @@ function DocButon() {
 
             let index = null
             let text = null
+
             if (Object.keys(data[0]).includes("mts")) {
               for (let i = 1; i < Object.keys(data[0]["mts"]).length; i++) {
                 if (data[0]["mts"][i]["ty"] == "is") {
                   text = data[0]["mts"][i]["s"]
+                  if (text.length > 100) {
+                    flags.push({ text, date, time, user })
+                  }
                   index = data[0]["mts"][i]["ibi"]
                   wirtingDataJson.push({
                     date,
@@ -128,6 +147,9 @@ function DocButon() {
                     if (data[0]["mts"][i]["mts"][k]["ty"] == "is") {
                       text = data[0]["mts"][i]["mts"][k]["s"]
                       index = data[0]["mts"][i]["mts"][k]["ibi"]
+                      if (text.length > 100) {
+                        flags.push({ text, date, time, user })
+                      }
                       wirtingDataJson.push({
                         date,
                         time,
@@ -141,6 +163,9 @@ function DocButon() {
                         data[0]["mts"][i]["mts"][k]["si"],
                         data[0]["mts"][i]["mts"][k]["ei"]
                       ]
+                      if (text.length > 100) {
+                        flags.push({ text, date, time, user })
+                      }
                       wirtingDataJson.push({
                         date,
                         time,
@@ -153,6 +178,9 @@ function DocButon() {
                 } else if (data[0]["mts"][i]["ty"] == "ds") {
                   text = "ds"
                   index = [data[0]["mts"][i].si, data[0]["mts"][i].ei]
+                  if (text.length > 100) {
+                    flags.push({ text, date, time, user })
+                  }
                   wirtingDataJson.push({
                     date,
                     time,
@@ -166,6 +194,9 @@ function DocButon() {
               if (data[0]["ty"] == "is") {
                 text = data[0].s
                 index = data[0].ibi
+                if (text.length > 100) {
+                  flags.push({ text, date, time, user })
+                }
                 wirtingDataJson.push({
                   date,
                   time,
@@ -176,6 +207,9 @@ function DocButon() {
               } else if (data[0]["ty"] == "ds") {
                 text = "ds"
                 index = [data[0].si, data[0].ei]
+                if (text.length > 100) {
+                  flags.push({ text, date, time, user })
+                }
                 wirtingDataJson.push({
                   date,
                   time,
@@ -186,6 +220,7 @@ function DocButon() {
               }
             }
           }
+          changeflag(flags)
         })
         .catch((error) => {
           console.error("Fetch operation error:", error)
@@ -200,13 +235,21 @@ function DocButon() {
   const handleClick = () => {
     console.log("Button clicked")
   }
-  return (
-    <button className="doc-button" onClick={handleClick}>
-      {rev[1] && `Rev: ${rev[0]}`}
-      {cop[1] && `Rev: ${rev[0]}`}
-      {per[1] && `Rev: ${per[0]}`}
+
+  console.log(rev)
+  if (rev !== null) {
+    return (
+      <button className="doc-button" onClick={handleClick}>
+        {rev[1] ? `Rev: ${rev[0]}` : ""}
+        {`Cop: ${cop.length}`}
+        {per[1] ? `Rev: ${per[0]}` : ""}
+      </button>
+    )
+  } else {
+    ;<button className="doc-button" onClick={handleClick}>
+      loading
     </button>
-  )
+  }
 }
 
 const mountNode = document.createElement("div")
