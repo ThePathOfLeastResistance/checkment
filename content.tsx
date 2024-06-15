@@ -24,7 +24,6 @@ function converTime(input: number) {
 
 function DocButon() {
   const [rev, changeRev] = useState([null, null])
-  const [cop, changeCop] = useState([null, null])
   const [per, changePer] = useState([null, null])
   const [flaglog, changeflag] = useState(null)
   const [docdata, changeDocData] = useState("")
@@ -221,6 +220,7 @@ function DocButon() {
             }
           }
           changeflag(flags)
+          console.log(flags)
         })
         .catch((error) => {
           console.error("Fetch operation error:", error)
@@ -237,18 +237,21 @@ function DocButon() {
   }
 
   console.log(rev)
-  if (rev !== null) {
+  console.log(flaglog)
+  if (rev !== null && flaglog !== null) {
     return (
       <button className="doc-button" onClick={handleClick}>
         {rev[1] ? `Rev: ${rev[0]}` : ""}
-        {`Cop: ${cop.length}`}
+        {`Copies: ${flaglog.length}`}
         {per[1] ? `Rev: ${per[0]}` : ""}
       </button>
     )
   } else {
-    ;<button className="doc-button" onClick={handleClick}>
-      loading
-    </button>
+    return (
+      <button className="doc-button" onClick={handleClick}>
+        loading
+      </button>
+    )
   }
 }
 
