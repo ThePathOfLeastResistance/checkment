@@ -241,33 +241,27 @@ function DocButon() {
     document.head.appendChild(buttonStyle)
   }, [docdata])
 
-  const handleClick = () => {
-    console.log("Button clicked")
-  }
-
   console.log(rev)
   console.log(flaglog)
   if (rev !== null && flaglog !== null) {
     return (
-      <button className="doc-button" onClick={handleClick}>
-        {rev[1] ? `Rev: ${rev[0]}` : ""}
-        {`Copies: ${flaglog.length}`}
-        Time Spent:{Math.round(tim)} minutes
-        {per[1] ? `Rev: ${per[0]}` : ""}
+      <button
+        className="doc-button"
+        onClick={() => {
+          chrome.runtime.sendMessage({ action: "opentab" })
+        }}>
+        {rev[1] ? `Rev: ${rev[0]}` : ""} {`Copies: ${flaglog.length}`}
+        {/* TODO change the time to hours and minutes */} Time Spent:
+        {Math.round(tim)} minutes {per[1] ? `Rev: ${per[0]}` : ""}
       </button>
     )
   } else {
-    return (
-      <button className="doc-button" onClick={handleClick}>
-        loading
-      </button>
-    )
+    return <button className="doc-button">loading</button>
   }
 }
 
 const mountNode = document.createElement("div")
 const docTitleBar = document.querySelector(".docs-titlebar-buttons")
-console.log(docTitleBar.firstChild)
 docTitleBar.insertBefore(mountNode, docTitleBar.firstChild)
 const root = createRoot(mountNode)
 root.render(<DocButon />)
