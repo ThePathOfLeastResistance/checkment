@@ -6,10 +6,25 @@ import { useEffect, useState } from "react"
 import { render } from "react-dom"
 import { createRoot } from "react-dom/client"
 
+import { sendToBackground } from "@plasmohq/messaging"
+
 // todofix the part where it turns null
 
 export const config: PlasmoCSConfig = {
   matches: ["https://docs.google.com/document/*"]
+}
+
+async function sendMessageToBackground() {
+  try {
+    const response = await sendToBackground({
+      name: "getData",
+      body: { id: 123 }
+    })
+    console.log(response)
+    console.log("Response from background:", response)
+  } catch (error) {
+    console.error("Error sending message to background:", error)
+  }
 }
 
 function converTime(input: number) {
@@ -22,6 +37,16 @@ function converTime(input: number) {
   return [date, time]
 }
 
+function addRevData(list, date, time, user, text, index) {
+  list.push({
+    date,
+    time,
+    user,
+    text,
+    index
+  })
+}
+
 function DocButon() {
   const [rev, changeRev] = useState([null, null])
   // this is the conidience for the user using chatgpt
@@ -31,16 +56,6 @@ function DocButon() {
   const [docdata, changeDocData] = useState("")
   const [tok, changeTok] = useState("")
   const [documentId, changeDocumentId] = useState("")
-
-  function addRevData(list, date, time, user, text, index) {
-    list.push({
-      date,
-      time,
-      user,
-      text,
-      index
-    })
-  }
 
   useEffect(() => {
     const url = window.location.href
@@ -236,9 +251,9 @@ function DocButon() {
         })
     }
 
-    const buttonStyle = document.createElement("style")
-    buttonStyle.innerHTML = cssText
-    document.head.appendChild(buttonStyle)
+    // const buttonStyle = document.createElement("style")
+    // buttonStyle.innerHTML = cssText
+    // document.head.appendChild(buttonStyle)
   }, [docdata])
 
   console.log(rev)
@@ -259,6 +274,8 @@ function DocButon() {
     return <button className="doc-button">loading</button>
   }
 }
+
+sendMessageToBackground()
 
 const mountNode = document.createElement("div")
 const docTitleBar = document.querySelector(".docs-titlebar-buttons")
