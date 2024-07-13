@@ -274,9 +274,18 @@ function DocButon() {
         onClick={() => {
           chrome.runtime.sendMessage({ action: "opentab" })
         }}>
-        {rev[1] ? `Rev: ${rev[0]}` : ""} {`Copies: ${flaglog.length}`}
-        {/* TODO change the time to hours and minutes */} Time Spent:
-        {Math.round(tim)} minutes {per[1] ? `Rev: ${per[0]}` : ""}
+        <div className={style.buttondiv}>
+          <h1 className={style.header}>Revision:</h1>
+          <h2 className={style.text}>{rev[1] ? rev[0] : 0}</h2>
+        </div>
+        <div className={style.buttondiv}>
+          <h1 className={style.header}>Copies:</h1>
+          <h2 className={style.text}>{flaglog.length}</h2>
+        </div>
+        <div className={style.buttondiv}>
+          <h1 className={style.header}>Time Spent:</h1>
+          <h2 className={style.text}>{Math.round(tim)} minutes</h2>
+        </div>
       </button>
     )
   } else {
