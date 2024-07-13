@@ -4,8 +4,6 @@ import type { PlasmoMessaging } from "@plasmohq/messaging"
 
 function converTime(input: number) {
   const data = new Date(input)
-  // console.log(data.toLocaleString())
-  ;("6/7/2024, 11:18:43 PM")
   const date = data.toLocaleString().split(",")[0]
   const timedata = data.toLocaleString().split(",")[1].split(" ")
   const time = timedata[0].split(":").slice(0, 2) + timedata[1]
@@ -23,8 +21,7 @@ const [documentId, changeDocumentId] = useState("")
 
 useEffect(() => {
   const url = window.location.href
-  // console.log(typeof url)
-  // console.log(document)
+
   const matching = url.match("/document/d/([^/]+)/")
   if (matching) {
     changeDocumentId(matching[1])

@@ -1,17 +1,26 @@
 import { error } from "console"
 import { report } from "process"
-import cssText from "data-text:~/style.css"
-import type { PlasmoCSConfig } from "plasmo"
+// css
+import styleText from "data-text:./style.module.css"
+import type { PlasmoCSConfig, PlasmoGetStyle } from "plasmo"
 import { useEffect, useState } from "react"
 import { render } from "react-dom"
 import { createRoot } from "react-dom/client"
 
 import { sendToBackground } from "@plasmohq/messaging"
 
+import * as style from "./style.module.css"
+
 // todofix the part where it turns null
 
 export const config: PlasmoCSConfig = {
   matches: ["https://docs.google.com/document/*"]
+}
+
+export const getStyle = () => {
+  const style = document.createElement("style")
+  style.textContent = styleText
+  return style
 }
 
 async function sendMessageToBackground() {
@@ -261,7 +270,7 @@ function DocButon() {
   if (rev !== null && flaglog !== null) {
     return (
       <button
-        className="doc-button"
+        className={style.docbutton}
         onClick={() => {
           chrome.runtime.sendMessage({ action: "opentab" })
         }}>
@@ -271,7 +280,7 @@ function DocButon() {
       </button>
     )
   } else {
-    return <button className="doc-button">loading</button>
+    return <button className={style.docbutton}>loading</button>
   }
 }
 
