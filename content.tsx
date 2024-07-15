@@ -23,19 +23,6 @@ export const getStyle = () => {
   return style
 }
 
-async function sendMessageToBackground() {
-  try {
-    const response = await sendToBackground({
-      name: "getData",
-      body: { id: 123 }
-    })
-    console.log(response)
-    console.log("Response from background:", response)
-  } catch (error) {
-    console.error("Error sending message to background:", error)
-  }
-}
-
 function converTime(input: number) {
   const data = new Date(input)
   // console.log(data.toLocaleString())
@@ -119,6 +106,13 @@ function DocButon() {
         })
     }
   }, [tok])
+
+  useEffect(() => {
+    chrome.runtime.sendMessage({ type: "GREETINGS" }, (response) => {
+      console.log("Received response:", response)
+      console.log(response.message)
+    })
+  }, [])
 
   useEffect(() => {
     if (docdata.includes(")]}'")) {
@@ -292,8 +286,6 @@ function DocButon() {
     return <button className={style.docbutton}>loading</button>
   }
 }
-
-sendMessageToBackground()
 
 const mountNode = document.createElement("div")
 const docTitleBar = document.querySelector(".docs-titlebar-buttons")
