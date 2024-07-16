@@ -54,6 +54,19 @@ function DocButon() {
   const [documentId, changeDocumentId] = useState("")
 
   useEffect(() => {
+    console.log("send messages to background")
+    const fetchData = async () => {
+      const resp = await sendToBackground({
+        name: "ping",
+        body: {
+          id: 123
+        }
+      })
+    }
+    fetchData()
+  }, [])
+
+  useEffect(() => {
     const url = window.location.href
     // console.log(typeof url)
     // console.log(document)
@@ -107,12 +120,12 @@ function DocButon() {
     }
   }, [tok])
 
-  useEffect(() => {
-    chrome.runtime.sendMessage({ type: "GREETINGS" }, (response) => {
-      console.log("Received response:", response)
-      console.log(response.message)
-    })
-  }, [])
+  // useEffect(() => {
+  //   chrome.runtime.sendMessage({ type: "GREETINGS" }, (response) => {
+  //     console.log("Received response:", response)
+  //     console.log(response.message)
+  //   })
+  // }, [])
 
   useEffect(() => {
     if (docdata.includes(")]}'")) {
