@@ -166,9 +166,19 @@ function DocButon() {
       <button
         className={style.docbutton}
         onClick={() => {
-          chrome.tabs.create({
-            url: "./tabs/replay.html"
-          })
+          const fetchData = async () => {
+            console.log("sending to background")
+            const resp = await sendToBackground({
+              name: "tab",
+              body: {
+                data: docdata,
+                message: true,
+                flags: flaglog
+              }
+            })
+            console.log("received the message")
+          }
+          fetchData()
         }}>
         <div className={style.buttondiv}>
           <h1 className={style.header}>Revision:</h1>

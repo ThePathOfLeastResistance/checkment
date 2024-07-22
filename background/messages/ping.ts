@@ -129,6 +129,7 @@ const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
       }
     }
     console.log(flags)
+
     if (Number(dataRev.changelog.length - 1) == Number(i)) {
       console.log(flags, totaltime, wirtingDataJson)
       console.log(flags)
