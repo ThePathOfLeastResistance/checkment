@@ -122,8 +122,7 @@ function DocButon() {
       console.log(docdata)
       const userMap = data["userMap"]
       const numOfChange = data["tileInfo"].at(-1)["end"]
-      changeRev(numOfChange)
-      console.log("fetching")
+      changeRev([numOfChange, true])
       fetch(
         `https://docs.google.com/document/d/${documentId}/revisions/load?id=${documentId}&start=1&end=${numOfChange}`
       )
@@ -167,7 +166,9 @@ function DocButon() {
       <button
         className={style.docbutton}
         onClick={() => {
-          chrome.runtime.sendMessage({ action: "opentab" })
+          chrome.tabs.create({
+            url: "./tabs/replay.html"
+          })
         }}>
         <div className={style.buttondiv}>
           <h1 className={style.header}>Revision:</h1>
