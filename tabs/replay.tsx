@@ -1,4 +1,12 @@
 export default function DeltaFlyerPage() {
+  window.addEventListener("message", (event) => {
+    if (event.source !== window && event.data.type === "MY_DATA") {
+      const data = event.data.payload
+      console.log("Received data:", data)
+      // Handle your data here
+    }
+  })
+  console.log("Background script is running")
   return (
     <div
       style={{
