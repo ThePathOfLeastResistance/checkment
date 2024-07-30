@@ -17,6 +17,10 @@ export const config: PlasmoCSConfig = {
   matches: ["https://docs.google.com/document/*"]
 }
 
+fetch("/manifest.json")
+  .then((_) => _.text())
+  .then((_) => console.log(_))
+
 export const getStyle = () => {
   const style = document.createElement("style")
   style.textContent = styleText

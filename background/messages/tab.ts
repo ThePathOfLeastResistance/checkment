@@ -1,14 +1,28 @@
 import type { PlasmoMessaging } from "@plasmohq/messaging"
 
+console.log("Background script is running")
+console.log(chrome.scripting)
+console.log("Background script is running")
 const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
+  chrome.permissions.contains(
+    {
+      permissions: ["tabs"]
+    },
+    (result) => {
+      if (result) {
+        console.log("Permission granted")
+      } else {
+        console.log("Permission denied")
+      }
+    }
+  )
+
   const message = await req.body.message
   const data = await req.body.data
   const flags = await req.body.flags
   fetch("/manifest.json")
     .then((_) => _.text())
-    .then((_) =>
-      chrome.management.getPermissionWarningsByManifest(_, console.log)
-    )
+    .then((_) => console.log(_))
 
   if (message) {
     chrome.tabs.create({
