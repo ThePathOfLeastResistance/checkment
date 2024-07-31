@@ -14,12 +14,9 @@ import * as style from "./style.module.css"
 // todofix the part where it turns null
 
 export const config: PlasmoCSConfig = {
-  matches: ["https://docs.google.com/document/*"]
+  matches: ["<all_urls>"],
+  all_frames: true
 }
-
-fetch("/manifest.json")
-  .then((_) => _.text())
-  .then((_) => console.log(_))
 
 export const getStyle = () => {
   const style = document.createElement("style")
@@ -180,7 +177,6 @@ function DocButon() {
                 flags: flaglog
               }
             })
-            console.log("received the message")
           }
           fetchData()
         }}>
