@@ -56,6 +56,7 @@ function DocButon() {
   const [docdata, changeDocData] = useState("")
   const [tok, changeTok] = useState("")
   const [documentId, changeDocumentId] = useState("")
+  const [map, changeMap] = useState("")
 
   useEffect(() => {
     const url = window.location.href
@@ -122,9 +123,8 @@ function DocButon() {
     if (docdata.includes(")]}'")) {
       console.log("starting")
       const data = JSON.parse(docdata.replace(")]}'\n", ""))
-      console.log(data)
-      console.log(docdata)
       const userMap = data["userMap"]
+      changeMap(userMap)
       const numOfChange = data["tileInfo"].at(-1)["end"]
       changeRev([numOfChange, true])
       fetch(
@@ -177,7 +177,8 @@ function DocButon() {
               body: {
                 data: docdata,
                 message: true,
-                flags: flaglog
+                flags: flaglog,
+                map: map
               }
             })
             console.log("received the message")

@@ -11,32 +11,30 @@ export const getStyle = () => {
 }
 
 export default function DeltaFlyerPage() {
-  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    console.log("Background script received a message:", request)
-    sendResponse({ message: "Background script has received the message" })
-  })
-
   let [message, setMessage] = useState()
   let [data, setData] = useState()
   let [flags, setFlags] = useState()
-
+  let [map, setmap] = useState()
+  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    console.log("Background script received a message:", request)
+  })
   console.log("Background script is running")
   return (
     <div className={style.bodyStyle}>
-      <h3>Tittle:</h3>
-      <h2>{}</h2>
+      <h3 style={style.sideStyle}>Tittle:</h3>
+      <h2 style={style.headingStyle}>{}</h2>
       <div>
         <div>
-          <h3>Editors:</h3>
-          <h2>{}</h2>
+          <h3 style={style.sideStyle}>Editors:</h3>
+          <h2 style={style.headingStyle}>{}</h2>
         </div>
         <div>
-          <h3>Plaing Speed:</h3>
+          <h3 style={style.sideStyle}>Plaing Speed:</h3>
           <h2>{}</h2>
         </div>
       </div>
       <div>
-        <button>Play</button>
+        <button> Play</button>
         <h1>scroll</h1>
       </div>
       <div>
