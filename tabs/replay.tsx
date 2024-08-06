@@ -1,6 +1,6 @@
 import styleText from "data-text:./replay.module.css"
 import type { PlasmoCSConfig, PlasmoGetStyle } from "plasmo"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import * as style from "./replay.module.css"
 
@@ -11,10 +11,13 @@ export const getStyle = () => {
 }
 
 export default function DeltaFlyerPage() {
-  let [message, setMessage] = useState()
-  let [data, setData] = useState()
-  let [flags, setFlags] = useState()
-  let [map, setmap] = useState()
+  const [message, setMessage] = useState()
+  const [data, setData] = useState()
+  const [flags, setFlags] = useState()
+  const [map, setmap] = useState()
+  const [sliderRange, setSliderRange] = useState()
+  const [inputValue, setInputValue] = useState()
+  const sliderRef = useRef(null)
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log("Background script received a message:", request)
   })
@@ -35,7 +38,7 @@ export default function DeltaFlyerPage() {
       </div>
       <div>
         <button> Play</button>
-        <h1>scroll</h1>
+        <div className="Ranger-slider"></div>
       </div>
       <div>
         <div>
