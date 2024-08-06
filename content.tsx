@@ -7,14 +7,15 @@ import type { PlasmoCSConfig, PlasmoGetStyle } from "plasmo";
 
 import { createRoot } from "react-dom/client";
 import { sendToBackground } from "@plasmohq/messaging";
-import cssText from "data-text:~style.css";
+
+import styleText from "data-text:./style.module.css";
+import * as style from "./style.module.css";
 
 export const getStyle = () => {
   const style = document.createElement("style");
-  style.textContent = cssText;
+  style.textContent = styleText;
   return style;
 };
-// todofix the part where it turns null
 
 export const config: PlasmoCSConfig = {
   matches: ["https://docs.google.com/document/*"],
@@ -161,6 +162,7 @@ function DocButon() {
   if (rev !== null && flaglog !== null) {
     return (
       <button
+        className={style.docbutton}
         onClick={() => {
           const fetchData = async () => {
             console.log("sending to background");
@@ -178,18 +180,26 @@ function DocButon() {
           fetchData();
         }}
       >
-        <div className="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-          <h1>Revision:</h1>
-          <h2>{rev[1] ? rev[0] : 0}</h2>
+        <div className={style.buttondiv}>
+          <h1 className={style.header}>Revision:</h1>
+          <h2 className={style.text}>{rev[1] ? rev[0] : 0}</h2>
         </div>
-        {/* <div>
+        <div className={style.buttondiv}>
+          <h1 className={style.header}>Copies:</h1>
+          <h2 className={style.text}>{flaglog.length}</h2>
+        </div>
+        <div className={style.buttondiv}>
+          <h1 className={style.header}>Time Spent:</h1>
+          <h2 className={style.text}>{Math.round(tim)} minutes</h2>
+        </div>
+        <div>
           <h1>Copies:</h1>
           <h2>{flaglog.length}</h2>
         </div>
         <div>
           <h1>Time Spent:</h1>
           <h2>{Math.round(tim)} minutes</h2>
-        </div> */}
+        </div>
       </button>
     );
   } else {
