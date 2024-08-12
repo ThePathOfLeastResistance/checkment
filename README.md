@@ -1,5 +1,6 @@
 To DO
 - Change the Manifest for the production build
+- https://readme.so/editor make the readme look better
 - 
 
 This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
