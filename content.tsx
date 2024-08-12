@@ -192,14 +192,6 @@ function DocButon() {
           <h1 className={style.header}>Time Spent:</h1>
           <h2 className={style.text}>{Math.round(tim)} minutes</h2>
         </div>
-        <div>
-          <h1>Copies:</h1>
-          <h2>{flaglog.length}</h2>
-        </div>
-        <div>
-          <h1>Time Spent:</h1>
-          <h2>{Math.round(tim)} minutes</h2>
-        </div>
       </button>
     );
   } else {
