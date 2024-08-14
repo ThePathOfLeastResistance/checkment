@@ -18,44 +18,52 @@ const DeltaFlyerPage = () => {
   return (
     <div className="px-32 py-4 bg-[#F1F6F9] h-screen	w-screen">
       <h3 className="text-xl text-black">Tittle:</h3>
-      <h2 className="text-black text-7xl">My Final English Essay</h2>
-      <div className="flex mr-4">
-        <div className="inline-block h-8 mr-4">
+      <h2 className="my-1 text-4xl text-black">My Final English Essay</h2>
+      <div className="flex my-2">
+        <div className="inline-block mr-4">
           <h3 className="text-xl">Editors:</h3>
-          <div className="px-2 py-1 space-x-4">
-            <svg height="32" width="32" xmlns="http://www.w3.org/2000/svg">
-              <circle r="15" cx="16" cy="16" fill="red" />
-            </svg>
+          <div className="block my-1" role="group">
+            <div className="flex px-2 py-1 mx-1 align-middle border-2">
+              <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg">
+                <circle r="7" cx="8" cy="8" fill="#8BCC22" />
+              </svg>
+              <h2 className="mx-1">James Cao</h2>
+            </div>
+            <div className="flex px-2 py-1 align-middle border-2 ">
+              <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg">
+                <circle r="7" cx="8" cy="8" fill="#2299CC" />
+              </svg>
+              <h2 className="mx-1">Jerry Joe</h2>
+            </div>
           </div>
         </div>
-        <div className="inline-block h-8 mx-4">
+        <div className="inline-block mx-4">
           <h3 className="text-xl">Plaing Speed:</h3>
-
-          <div className="block rounded-md shadow-sm" role="group">
+          <div className="block my-1 rounded-md shadow-sm" role="group">
             <button
               type="button"
-              className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
+              className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 "
             >
               Profile
             </button>
             <button
               type="button"
-              className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
+              className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100"
             >
               Settings
             </button>
             <button
               type="button"
-              className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
+              className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100"
             >
               Messages
             </button>
           </div>
         </div>
       </div>
-      <div className="flex my-4">
-        <div className="inline-block h-4 mr-4 row">
-          <button className="p-2 outline outline-2 ">
+      <div className="flex my-2">
+        <div className="inline-block h-4 mr-4">
+          <button className="flex-row p-2 align-middle outline outline-2 ">
             {" "}
             <svg
               width="11"
