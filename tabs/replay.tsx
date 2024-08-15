@@ -16,30 +16,24 @@ const DeltaFlyerPage = () => {
   });
   console.log("Background script is running");
   return (
-    <div className="px-32 py-4 bg-[#F1F6F9] h-screen	w-screen">
-      <h3 className="text-xl text-black">Tittle:</h3>
+    <div className="px-32 pt-12 bg-[#F1F6F9] h-screen	w-screen">
+      <h3 className="text-lg text-black">Tittle:</h3>
       <h2 className="my-1 text-4xl text-black">My Final English Essay</h2>
-      <div className="flex my-2">
+      <div className="flex my-8">
         <div className="inline-block mr-4">
-          <h3 className="text-xl">Editors:</h3>
-          <div className="flex flex-row my-1" role="group">
-            <div className="flex px-2 py-1 mr-1 align-middle border-2 border-black rounded">
-              <svg height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-                <circle r="1" cx="12" cy="12" fill="#8BCC22" />
+          <h3 className="text-lg">Editors:</h3>
+          <div className="flex flex-row my-2" role="group">
+            <div className="flex flex-row items-center px-2 py-1 mr-1 border-2 border-black rounded">
+              <svg height="18" width="18" xmlns="http://www.w3.org/2000/svg">
+                <circle r="8" cx="9" cy="9" fill="#8BCC22" />
               </svg>
               <h2 className="mx-1 text-base ">James Cao</h2>
-            </div>
-            <div className="flex px-2 py-1 mr-1 align-middle border-2 border-black rounded">
-              <svg height="32" width="32" xmlns="http://www.w3.org/2000/svg">
-                <circle r="15" cx="16" cy="16" fill="#2299CC" />
-              </svg>
-              <h2 className="mx-1 text-base ">Jerry Dude</h2>
             </div>
           </div>
         </div>
         <div className="inline-block mx-4">
-          <h3 className="text-xl">Plaing Speed:</h3>
-          <div className="block my-1 rounded shadow-sm" role="group">
+          <h3 className="text-lg">Plaing Speed:</h3>
+          <div className="block my-2 rounded shadow-sm" role="group">
             <button
               type="button"
               className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 "
@@ -74,8 +68,8 @@ const DeltaFlyerPage = () => {
         </div>
       </div>
       <div className="flex my-2">
-        <div className="inline-block h-4 mr-4">
-          <button className="flex flex-row items-center px-2 py-1 align-middle rounded outline outline-2 ">
+        <div className="inline-block mr-4">
+          <button className="flex flex-row items-center px-3 py-1 rounded outline outline-2 ">
             {" "}
             <svg
               width="11"
@@ -93,20 +87,11 @@ const DeltaFlyerPage = () => {
             <h2 className="text-base ">Play</h2>
           </button>
         </div>
-        <div className="inline-block h-4 mr-4">
-          <input type="range" className="flex w-full bg-[#9BA4B5] " />
-        </div>
-      </div>
 
-      <div>
-        <div>
-          <h3>Time:</h3>
-          <h2>{}</h2>
-        </div>
-        <div>
-          <h3>Flags:</h3>
-          <h2>{}</h2>
-        </div>
+        <input
+          type="range"
+          className="inline-block w-full h-24 mr-4 bg-transparent "
+        />
       </div>
     </div>
   );
