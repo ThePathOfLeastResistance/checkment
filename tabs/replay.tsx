@@ -22,48 +22,60 @@ const DeltaFlyerPage = () => {
       <div className="flex my-2">
         <div className="inline-block mr-4">
           <h3 className="text-xl">Editors:</h3>
-          <div className="block my-1" role="group">
-            <div className="flex px-2 py-1 mx-1 align-middle border-2">
-              <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg">
-                <circle r="7" cx="8" cy="8" fill="#8BCC22" />
+          <div className="flex flex-row my-1" role="group">
+            <div className="flex px-2 py-1 mr-1 align-middle border-2 border-black rounded">
+              <svg height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                <circle r="1" cx="12" cy="12" fill="#8BCC22" />
               </svg>
-              <h2 className="mx-1">James Cao</h2>
+              <h2 className="mx-1 text-base ">James Cao</h2>
             </div>
-            <div className="flex px-2 py-1 align-middle border-2 ">
-              <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg">
-                <circle r="7" cx="8" cy="8" fill="#2299CC" />
+            <div className="flex px-2 py-1 mr-1 align-middle border-2 border-black rounded">
+              <svg height="32" width="32" xmlns="http://www.w3.org/2000/svg">
+                <circle r="15" cx="16" cy="16" fill="#2299CC" />
               </svg>
-              <h2 className="mx-1">Jerry Joe</h2>
+              <h2 className="mx-1 text-base ">Jerry Dude</h2>
             </div>
           </div>
         </div>
         <div className="inline-block mx-4">
           <h3 className="text-xl">Plaing Speed:</h3>
-          <div className="block my-1 rounded-md shadow-sm" role="group">
+          <div className="block my-1 rounded shadow-sm" role="group">
             <button
               type="button"
               className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 "
             >
-              Profile
+              1
             </button>
             <button
               type="button"
               className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100"
             >
-              Settings
+              1.5
+            </button>
+            <button
+              type="button"
+              className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100"
+            >
+              2
+            </button>
+            <button
+              type="button"
+              className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100"
+            >
+              3
             </button>
             <button
               type="button"
               className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100"
             >
-              Messages
+              5
             </button>
           </div>
         </div>
       </div>
       <div className="flex my-2">
         <div className="inline-block h-4 mr-4">
-          <button className="flex-row p-2 align-middle outline outline-2 ">
+          <button className="flex flex-row items-center px-2 py-1 align-middle rounded outline outline-2 ">
             {" "}
             <svg
               width="11"
@@ -71,17 +83,18 @@ const DeltaFlyerPage = () => {
               viewBox="0 0 11 13"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className="mr-1"
             >
               <path
                 d="M10.5 5.63398C11.1667 6.01888 11.1667 6.98113 10.5 7.36603L2.25 12.1292C1.58333 12.5141 0.75 12.0329 0.75 11.2631L0.75 1.73686C0.75 0.967059 1.58333 0.485935 2.25 0.870835L10.5 5.63398Z"
                 fill="black"
               />
             </svg>
-            Play
+            <h2 className="text-base ">Play</h2>
           </button>
         </div>
         <div className="inline-block h-4 mr-4">
-          <input type="range" className="flex w-full" />
+          <input type="range" className="flex w-full bg-[#9BA4B5] " />
         </div>
       </div>
 
