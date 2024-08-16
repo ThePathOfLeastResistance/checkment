@@ -1,6 +1,9 @@
 import type { PlasmoCSConfig, PlasmoGetStyle } from "plasmo";
 import { useEffect, useRef, useState } from "react";
 
+// should I add auto prefizer for css
+// https://tailwindcss.com/docs/browser-support#vendor-prefixes
+
 import "../style.css";
 
 const DeltaFlyerPage = () => {
@@ -16,7 +19,7 @@ const DeltaFlyerPage = () => {
   });
   console.log("Background script is running");
   return (
-    <div className="px-32 pt-12 bg-[#F1F6F9] h-screen	w-screen">
+    <div className="px-32 pt-8 bg-[#F1F6F9] h-screen	w-screen">
       <h3 className="text-lg text-black">Tittle:</h3>
       <h2 className="my-1 text-4xl text-black">My Final English Essay</h2>
       <div className="flex my-8">
@@ -88,10 +91,23 @@ const DeltaFlyerPage = () => {
           </button>
         </div>
 
-        <input
-          type="range"
-          className="inline-block w-full h-24 mr-4 bg-transparent "
-        />
+        <div className="flex w-full">
+          <label
+            htmlFor="customRange1"
+            className="inline-block mb-2 text-neutral-700 dark:text-neutral-200"
+          >
+            Example range
+          </label>
+          <input
+            type="range"
+            className="w-full h-6 border-transparent rounded-lg appearance-none cursor-pointer transparent bg-neutral-200"
+            id="customRange1"
+            min={0}
+            max={10000}
+            step={1}
+            value={0}
+          />
+        </div>
       </div>
     </div>
   );
