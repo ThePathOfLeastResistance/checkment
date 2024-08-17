@@ -19,16 +19,16 @@ const DeltaFlyerPage = () => {
   });
   console.log("Background script is running");
   return (
-    <div className="px-32 pt-6 bg-[#F1F6F9] h-screen	w-screen">
+    <div className="px-auto pt-14 bg-[#F1F6F9] h-screen	w-screen">
       <div className="flex flex-row my-4">
         <div className="inline-block mr-4">
           <h3 className="text-lg text-black">Tittle:</h3>
           <h2 className="text-4xl text-black ">My Final English Essay</h2>
         </div>
-        <div className="inline-block mr-4">
+        <div className="inline-block mx-4 ml-20">
           <h3 className="text-lg">Editors:</h3>
-          <div className="flex flex-row " role="group">
-            <div className="flex flex-row items-center px-2 py-1 mr-1 border-2 border-black rounded">
+          <div className="flex flex-row my-2" role="group">
+            <div className="flex flex-row items-center px-2 mr-1 border-2 border-black rounded">
               <svg height="18" width="18" xmlns="http://www.w3.org/2000/svg">
                 <circle r="8" cx="9" cy="9" fill="#8BCC22" />
               </svg>
@@ -72,9 +72,9 @@ const DeltaFlyerPage = () => {
           </div>
         </div>
       </div>
-      <div className="flex my-2">
+      <div className="flex my-2 align-middle">
         <div className="inline-block mr-4">
-          <button className="flex flex-row items-center px-3 py-1 rounded outline outline-2 ">
+          <button className="flex flex-row items-center px-2 py-1 rounded outline outline-2 ">
             {" "}
             <svg
               width="11"
@@ -89,26 +89,26 @@ const DeltaFlyerPage = () => {
                 fill="black"
               />
             </svg>
-            <h2 className="text-base ">Play</h2>
+            <h2 className="text-sm">Play</h2>
           </button>
         </div>
-        <div className="flex w-full">
+        <div className="flex items-center justify-center w-full">
           <label
             htmlFor="customRange1"
             className="inline-block mb-2 text-neutral-700 dark:text-neutral-200"
           ></label>
           <input
             type="range"
-            className="w-full h-6 border-transparent rounded-lg appearance-none cursor-pointer transparent bg-neutral-200"
+            className="w-full h-4 border-transparent rounded appearance-none cursor-col-resize transparent bg-[#9BA4B5]"
             id="customRange1"
             min={0}
             max={100}
           />
         </div>
       </div>
-      <div className="flex flex-row">
-        <div className="flex flex-col items-center w-3/4 mr-10 overflow-y-scroll h-160 overflow-x-clip ">
-          <div className="p-5 mx-24 mt-24 mb-5 bg-white border-2 h-[1056px] w-[816px]">
+      <div className="flex flex-row mt-4">
+        <div className="flex flex-col items-center w-3/4 mr-5 overflow-y-scroll min-w-[836px] h-120 overflow-x-clip ">
+          <div className="block px-16 py-20 mt-8 bg-white border-2 h-[1056px] w-[816px]">
             Tearing open my fifth packet of cookies, I devour them while staring
             blankly at the screen. Before me, a laptop spewing forth a jumble of
             words and symbols, which combine to form error code. To many it may
@@ -130,7 +130,7 @@ const DeltaFlyerPage = () => {
             babbling sound, its clear waters reflecting the sky. The scene
             represented a moment of serenity, where
           </div>
-          <div className="p-5 mx-24 mt-24 mb-5 bg-white border-2 h-[1056px] w-[816px]">
+          <div className="block px-16 py-20 mt-8 bg-white border-2 h-[1056px] w-[816px]">
             Tearing open my fifth packet of cookies, I devour them while staring
             blankly at the screen. Before me, a laptop spewing forth a jumble of
             words and symbols, which combine to form error code. To many it may
