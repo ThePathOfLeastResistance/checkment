@@ -19,13 +19,15 @@ const DeltaFlyerPage = () => {
   });
   console.log("Background script is running");
   return (
-    <div className="px-32 pt-8 bg-[#F1F6F9] h-screen	w-screen">
-      <h3 className="text-lg text-black">Tittle:</h3>
-      <h2 className="my-1 text-4xl text-black">My Final English Essay</h2>
-      <div className="flex my-8">
+    <div className="px-32 pt-6 bg-[#F1F6F9] h-screen	w-screen">
+      <div className="flex flex-row my-4">
+        <div className="inline-block mr-4">
+          <h3 className="text-lg text-black">Tittle:</h3>
+          <h2 className="text-4xl text-black ">My Final English Essay</h2>
+        </div>
         <div className="inline-block mr-4">
           <h3 className="text-lg">Editors:</h3>
-          <div className="flex flex-row my-2" role="group">
+          <div className="flex flex-row " role="group">
             <div className="flex flex-row items-center px-2 py-1 mr-1 border-2 border-black rounded">
               <svg height="18" width="18" xmlns="http://www.w3.org/2000/svg">
                 <circle r="8" cx="9" cy="9" fill="#8BCC22" />
@@ -90,23 +92,69 @@ const DeltaFlyerPage = () => {
             <h2 className="text-base ">Play</h2>
           </button>
         </div>
-
         <div className="flex w-full">
           <label
             htmlFor="customRange1"
             className="inline-block mb-2 text-neutral-700 dark:text-neutral-200"
-          >
-            Example range
-          </label>
+          ></label>
           <input
             type="range"
             className="w-full h-6 border-transparent rounded-lg appearance-none cursor-pointer transparent bg-neutral-200"
             id="customRange1"
             min={0}
-            max={10000}
-            step={1}
-            value={0}
+            max={100}
           />
+        </div>
+      </div>
+      <div className="flex flex-row">
+        <div className="flex flex-col items-center w-3/4 mr-10 overflow-y-scroll h-160 overflow-x-clip ">
+          <div className="p-5 mx-24 mt-24 mb-5 bg-white border-2 h-[1056px] w-[816px]">
+            Tearing open my fifth packet of cookies, I devour them while staring
+            blankly at the screen. Before me, a laptop spewing forth a jumble of
+            words and symbols, which combine to form error code. To many it may
+            seem alien, but to me, the words point to the failure of my code. As
+            I stay glued to my chair, I ponder the reasons for this error.
+            Having only learned this programming language an hour ago, my mind
+            overflows with different theoretical possibilities. Reading over the
+            error message, I glanced over the clock only to realize my estimate
+            of time was off, by three folds, I started learning this language 3
+            hours ago. In an attempt to make sense of this discovery, I
+            contemplate the past events, as if I could somehow recover time from
+            this retrospecrtion. Before I could think further, my mind snapped
+            back to the laptop as it wanted to know why, why the code failed. 
+            The morning sun, emitting light, interacted with dew-covered grass,
+            resulting in a golden hue across the meadow. Birds produced melodic
+            sounds, synchronized with the rustling of leaves on ancient oak
+            trees. A rabbit appeared from behind a bush, its nose moving as it
+            observed the surroundings. In proximity, a brook produced a soft
+            babbling sound, its clear waters reflecting the sky. The scene
+            represented a moment of serenity, where
+          </div>
+          <div className="p-5 mx-24 mt-24 mb-5 bg-white border-2 h-[1056px] w-[816px]">
+            Tearing open my fifth packet of cookies, I devour them while staring
+            blankly at the screen. Before me, a laptop spewing forth a jumble of
+            words and symbols, which combine to form error code. To many it may
+            seem alien, but to me, the words point to the failure of my code. As
+            I stay glued to my chair, I ponder the reasons for this error.
+            Having only learned this programming language an hour ago, my mind
+            overflows with different theoretical possibilities. Reading over the
+            error message, I glanced over the clock only to realize my estimate
+            of time was off, by three folds, I started learning this language 3
+            hours ago. In an attempt to make sense of this discovery, I
+            contemplate the past events, as if I could somehow recover time from
+            this retrospecrtion. Before I could think further, my mind snapped
+            back to the laptop as it wanted to know why, why the code failed. 
+            The morning sun, emitting light, interacted with dew-covered grass,
+            resulting in a golden hue across the meadow. Birds produced melodic
+            sounds, synchronized with the rustling of leaves on ancient oak
+            trees. A rabbit appeared from behind a bush, its nose moving as it
+            observed the surroundings. In proximity, a brook produced a soft
+            babbling sound, its clear waters reflecting the sky. The scene
+            represented a moment of serenity, where
+          </div>
+        </div>
+        <div className="w-1/4 h-full bg-white border-2">
+          <div></div>
         </div>
       </div>
     </div>
