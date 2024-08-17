@@ -14,12 +14,20 @@ const DeltaFlyerPage = () => {
   const [sliderRange, setSliderRange] = useState();
   const [inputValue, setInputValue] = useState();
 
+  useEffect(() => {
+    document.body.style.backgroundColor = "green";
+
+    return () => {
+      document.body.style.backgroundColor = "transparent";
+    };
+  });
+
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log("Background script received a message:", request);
   });
   console.log("Background script is running");
   return (
-    <div className="px-auto pt-14 bg-[#F1F6F9] h-screen	w-screen">
+    <div className="px-20 pt-14 bg-[#F1F6F9] h-screen	w-screen">
       <div className="flex flex-row my-4">
         <div className="inline-block mr-4">
           <h3 className="text-lg text-black">Tittle:</h3>
@@ -107,28 +115,31 @@ const DeltaFlyerPage = () => {
         </div>
       </div>
       <div className="flex flex-row mt-4">
-        <div className="flex flex-col items-center w-3/4 mr-5 overflow-y-scroll min-w-[836px] h-120 overflow-x-clip ">
-          <div className="block px-16 py-20 mt-8 bg-white border-2 h-[1056px] w-[816px]">
-            Tearing open my fifth packet of cookies, I devour them while staring
-            blankly at the screen. Before me, a laptop spewing forth a jumble of
-            words and symbols, which combine to form error code. To many it may
-            seem alien, but to me, the words point to the failure of my code. As
-            I stay glued to my chair, I ponder the reasons for this error.
-            Having only learned this programming language an hour ago, my mind
-            overflows with different theoretical possibilities. Reading over the
-            error message, I glanced over the clock only to realize my estimate
-            of time was off, by three folds, I started learning this language 3
-            hours ago. In an attempt to make sense of this discovery, I
-            contemplate the past events, as if I could somehow recover time from
-            this retrospecrtion. Before I could think further, my mind snapped
-            back to the laptop as it wanted to know why, why the code failed. 
-            The morning sun, emitting light, interacted with dew-covered grass,
-            resulting in a golden hue across the meadow. Birds produced melodic
-            sounds, synchronized with the rustling of leaves on ancient oak
-            trees. A rabbit appeared from behind a bush, its nose moving as it
-            observed the surroundings. In proximity, a brook produced a soft
-            babbling sound, its clear waters reflecting the sky. The scene
-            represented a moment of serenity, where
+        <div className="flex flex-col items-center w-3/4 mr-5 overflow-auto	 min-w-[836px] h-[600px]">
+          <div className="block mt-8 bg-white border-2 h-[1056px] w-[816px]">
+            <div className="px-16 py-20 w-[816px]">
+              Tearing open my fifth packet of cookies, I devour them while
+              staring blankly at the screen. Before me, a laptop spewing forth a
+              jumble of words and symbols, which combine to form error code. To
+              many it may seem alien, but to me, the words point to the failure
+              of my code. As I stay glued to my chair, I ponder the reasons for
+              this error. Having only learned this programming language an hour
+              ago, my mind overflows with different theoretical possibilities.
+              Reading over the error message, I glanced over the clock only to
+              realize my estimate of time was off, by three folds, I started
+              learning this language 3 hours ago. In an attempt to make sense of
+              this discovery, I contemplate the past events, as if I could
+              somehow recover time from this retrospecrtion. Before I could
+              think further, my mind snapped back to the laptop as it wanted to
+              know why, why the code failed.  The morning sun, emitting light,
+              interacted with dew-covered grass, resulting in a golden hue
+              across the meadow. Birds produced melodic sounds, synchronized
+              with the rustling of leaves on ancient oak trees. A rabbit
+              appeared from behind a bush, its nose moving as it observed the
+              surroundings. In proximity, a brook produced a soft babbling
+              sound, its clear waters reflecting the sky. The scene represented
+              a moment of serenity, where
+            </div>
           </div>
           <div className="block px-16 py-20 mt-8 bg-white border-2 h-[1056px] w-[816px]">
             Tearing open my fifth packet of cookies, I devour them while staring
