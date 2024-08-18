@@ -15,7 +15,7 @@ const DeltaFlyerPage = () => {
   const [inputValue, setInputValue] = useState();
 
   useEffect(() => {
-    document.body.style.backgroundColor = "green";
+    document.body.style.backgroundColor = "#F1F6F9";
 
     return () => {
       document.body.style.backgroundColor = "transparent";
@@ -27,7 +27,7 @@ const DeltaFlyerPage = () => {
   });
   console.log("Background script is running");
   return (
-    <div className="px-20 pt-14 bg-[#F1F6F9] h-screen	w-screen">
+    <div className="w-screen h-screen px-20 pt-14">
       <div className="flex flex-row my-4">
         <div className="inline-block mr-4">
           <h3 className="text-lg text-black">Tittle:</h3>
@@ -114,9 +114,9 @@ const DeltaFlyerPage = () => {
           />
         </div>
       </div>
-      <div className="flex flex-row mt-4">
-        <div className="flex flex-col items-center w-3/4 mr-5 overflow-auto	 min-w-[836px] h-[600px]">
-          <div className="block mt-8 bg-white border-2 h-[1056px] w-[816px]">
+      <div className="flex flex-row mt-4 ">
+        <div className="flex flex-col items-center w-3/4 mr-5 overflow-auto min-w-[836px] h-[600px]">
+          <div className="shrink-0	 px-16 py-20 mt-8 bg-white border-2 h-[1056px] w-[816px]">
             <div className="px-16 py-20 w-[816px]">
               Tearing open my fifth packet of cookies, I devour them while
               staring blankly at the screen. Before me, a laptop spewing forth a
@@ -141,7 +141,7 @@ const DeltaFlyerPage = () => {
               a moment of serenity, where
             </div>
           </div>
-          <div className="block px-16 py-20 mt-8 bg-white border-2 h-[1056px] w-[816px]">
+          <div className="shrink-0	 px-16 py-20 mt-8 bg-white border-2 h-[1056px] w-[816px]">
             Tearing open my fifth packet of cookies, I devour them while staring
             blankly at the screen. Before me, a laptop spewing forth a jumble of
             words and symbols, which combine to form error code. To many it may
@@ -164,8 +164,13 @@ const DeltaFlyerPage = () => {
             represented a moment of serenity, where
           </div>
         </div>
-        <div className="w-1/4 h-full bg-white border-2">
-          <div></div>
+        <div className="flex-col w-1/4 h-full bg-white border-2">
+          <div className="flex-col p-5">
+            The morning sun, emitting light, interacted with dew-covered grass,
+            resulting in a golden hue across the meadow. Birds produced melodic
+            sounds, synchronized with the rustling of leaves on ancient oak
+            trees...
+          </div>
         </div>
       </div>
     </div>
