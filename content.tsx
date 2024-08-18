@@ -2,7 +2,7 @@ import { error } from "console";
 import { report } from "process";
 import { useEffect, useState } from "react";
 import { render } from "react-dom";
-// css
+
 import type { PlasmoCSConfig, PlasmoGetStyle } from "plasmo";
 
 import { createRoot } from "react-dom/client";
@@ -20,16 +20,6 @@ export const getStyle = () => {
 export const config: PlasmoCSConfig = {
   matches: ["https://docs.google.com/document/*"],
 };
-
-// function converTime(input: number) {
-//   const data = new Date(input)
-//   // console.log(data.toLocaleString())
-//   ;("6/7/2024, 11:18:43 PM")
-//   const date = data.toLocaleString().split(",")[0]
-//   const timedata = data.toLocaleString().split(",")[1].split(" ")
-//   const time = timedata[0].split(":").slice(0, 2) + timedata[1]
-//   return [date, time]
-// }
 
 function addRevData(list, date, time, user, text, index) {
   list.push({
@@ -54,8 +44,6 @@ function DocButon() {
 
   useEffect(() => {
     const url = window.location.href;
-    // console.log(typeof url)
-    // console.log(document)
     const matching = url.match("/document/d/([^/]+)/");
     if (matching) {
       changeDocumentId(matching[1]);
@@ -68,7 +56,6 @@ function DocButon() {
             mutation.type === "attributes" &&
             mutation.attributeName === "tok"
           ) {
-            // console.log("tok changed" + targetNode.getAttribute("tok"))
             const token = targetNode.getAttribute("tok");
             changeTok(token);
             observer.disconnect();
@@ -105,13 +92,6 @@ function DocButon() {
         });
     }
   }, [tok]);
-
-  // useEffect(() => {
-  //   chrome.runtime.sendMessage({ type: "GREETINGS" }, (response) => {
-  //     console.log("Received response:", response)
-  //     console.log(response.message)
-  //   })
-  // }, [])
 
   useEffect(() => {
     if (docdata.includes(")]}'")) {
@@ -158,7 +138,7 @@ function DocButon() {
         });
     }
   }, [docdata]);
-
+  console.log(map);
   if (rev !== null && flaglog !== null) {
     return (
       <button
@@ -175,7 +155,7 @@ function DocButon() {
                 map: map,
               },
             });
-            console.log("received the message");
+            console.log("received the message" + map);
           };
           fetchData();
         }}

@@ -10,7 +10,7 @@ const DeltaFlyerPage = () => {
   const [message, setMessage] = useState();
   const [data, setData] = useState();
   const [flags, setFlags] = useState();
-  const [map, setmap] = useState();
+  const [mapping, setmap] = useState(null);
   const [sliderRange, setSliderRange] = useState();
   const [inputValue, setInputValue] = useState();
   const [array, setArray] = useState([]);
@@ -32,7 +32,13 @@ const DeltaFlyerPage = () => {
 
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log("Background script received a message:", request);
+    setMessage(request.message);
+    setData(request.data);
+    setFlags(request.flags);
+    setmap(request.map);
+    console.log(mapping, data, flags, message);
   });
+
   console.log("Background script is running");
   return (
     <div className="w-screen h-screen px-20 pt-14">
@@ -44,12 +50,7 @@ const DeltaFlyerPage = () => {
         <div className="inline-block mx-4 ml-20">
           <h3 className="text-lg">Editors:</h3>
           <div className="flex flex-row my-2" role="group">
-            <div className="flex flex-row items-center px-2 mr-1 border-2 border-black rounded">
-              <svg height="18" width="18" xmlns="http://www.w3.org/2000/svg">
-                <circle r="8" cx="9" cy="9" fill="#8BCC22" />
-              </svg>
-              <h2 className="mx-1 text-base ">James Cao</h2>
-            </div>
+            sda
           </div>
         </div>
         <div className="inline-block mx-4">
@@ -146,7 +147,7 @@ const DeltaFlyerPage = () => {
               appeared from behind a bush, its nose moving as it observed the
               surroundings. In proximity, a brook produced a soft babbling
               sound, its clear waters reflecting the sky. The scene represented
-              a moment of serenity, where
+              a moment of serenity, wher
             </div>
           </div>
           <div className="shrink-0 flex mt-8 bg-white border-2 h-[1056px] w-[816px]">
