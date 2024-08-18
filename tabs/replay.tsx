@@ -116,8 +116,8 @@ const DeltaFlyerPage = () => {
       </div>
       <div className="flex flex-row mt-4 ">
         <div className="flex flex-col items-center w-3/4 mr-5 overflow-auto min-w-[836px] h-[600px]">
-          <div className="shrink-0	 px-16 py-20 mt-8 bg-white border-2 h-[1056px] w-[816px]">
-            <div className="px-16 py-20 w-[816px]">
+          <div className="shrink-0 flex mt-8 bg-white border-2 h-[1056px] w-[816px]">
+            <div className="px-16 py-20 w-[816px] text-base">
               Tearing open my fifth packet of cookies, I devour them while
               staring blankly at the screen. Before me, a laptop spewing forth a
               jumble of words and symbols, which combine to form error code. To
@@ -141,7 +141,7 @@ const DeltaFlyerPage = () => {
               a moment of serenity, where
             </div>
           </div>
-          <div className="shrink-0	 px-16 py-20 mt-8 bg-white border-2 h-[1056px] w-[816px]">
+          <div className="shrink-0 flex mt-8 bg-white border-2 h-[1056px] w-[816px]">
             Tearing open my fifth packet of cookies, I devour them while staring
             blankly at the screen. Before me, a laptop spewing forth a jumble of
             words and symbols, which combine to form error code. To many it may
@@ -164,8 +164,20 @@ const DeltaFlyerPage = () => {
             represented a moment of serenity, where
           </div>
         </div>
-        <div className="flex-col w-1/4 h-full bg-white border-2">
-          <div className="flex-col p-5">
+        <div className="flex-col w-1/4 h-full">
+          <div className="flex-col p-5 m-2 bg-white border-2 border-black rounded">
+            <svg
+              width="14"
+              height="13"
+              viewBox="0 0 14 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.90692 11.7602C7.52803 12.4754 6.5008 12.4677 6.13269 11.7469L0.882767 1.46724C0.541462 0.798944 1.03047 0.00680816 1.78085 0.0124398L12.4344 0.0923944C13.1848 0.098026 13.6618 0.897412 13.3105 1.56051L7.90692 11.7602Z"
+                fill="#FF0000"
+              />
+            </svg>
             The morning sun, emitting light, interacted with dew-covered grass,
             resulting in a golden hue across the meadow. Birds produced melodic
             sounds, synchronized with the rustling of leaves on ancient oak
