@@ -13,6 +13,7 @@ const DeltaFlyerPage = () => {
   const [map, setmap] = useState();
   const [sliderRange, setSliderRange] = useState();
   const [inputValue, setInputValue] = useState();
+  const [array, setArray] = useState([]);
 
   useEffect(() => {
     document.body.style.backgroundColor = "#F1F6F9";
@@ -21,6 +22,13 @@ const DeltaFlyerPage = () => {
       document.body.style.backgroundColor = "transparent";
     };
   });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.log("This will run every second!");
+      setArray((prevArray) => [...prevArray, 1]);
+    }, 1000);
+  }, []);
 
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log("Background script received a message:", request);
@@ -117,7 +125,7 @@ const DeltaFlyerPage = () => {
       <div className="flex flex-row mt-4 ">
         <div className="flex flex-col items-center w-3/4 mr-5 overflow-auto min-w-[836px] h-[600px]">
           <div className="shrink-0 flex mt-8 bg-white border-2 h-[1056px] w-[816px]">
-            <div className="px-16 py-20 w-[816px] text-base">
+            <div className="px-20 py-20 w-[816px] text-base">
               Tearing open my fifth packet of cookies, I devour them while
               staring blankly at the screen. Before me, a laptop spewing forth a
               jumble of words and symbols, which combine to form error code. To
@@ -165,12 +173,13 @@ const DeltaFlyerPage = () => {
           </div>
         </div>
         <div className="flex-col w-1/4 h-full">
-          <div className="flex-col p-5 m-2 bg-white border-2 border-black rounded">
+          <div className="flex-col p-4 my-4 bg-white border-2 border-black rounded">
             <svg
               width="14"
               height="13"
               viewBox="0 0 14 13"
               fill="none"
+              className="mb-2"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
