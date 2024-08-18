@@ -36,9 +36,9 @@ const DeltaFlyerPage = () => {
     setData(request.data);
     setFlags(request.flags);
     setmap(request.map);
-    console.log(mapping, data, flags, message);
   });
 
+  console.log(mapping, data, flags, message);
   console.log("Background script is running");
   return (
     <div className="w-screen h-screen px-20 pt-14">
@@ -50,7 +50,7 @@ const DeltaFlyerPage = () => {
         <div className="inline-block mx-4 ml-20">
           <h3 className="text-lg">Editors:</h3>
           <div className="flex flex-row my-2" role="group">
-            sda
+            {message ? <h1>no</h1> : <h1>yes</h1>}
           </div>
         </div>
         <div className="inline-block mx-4">
