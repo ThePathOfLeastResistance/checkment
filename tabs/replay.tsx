@@ -12,7 +12,7 @@ const DeltaFlyerPage = () => {
   const [data, setData] = useState();
   const [flags, setFlags] = useState(null);
   const [mapping, setmap] = useState(null);
-  const [sliderRange, setSliderRange] = useState();
+  const [sliderRange, setSliderRange] = useState(0);
   const [inputValue, setInputValue] = useState();
   const [array, setArray] = useState([]);
 
@@ -141,6 +141,7 @@ const DeltaFlyerPage = () => {
             id="customRange1"
             min={0}
             max={100}
+            value={sliderRange}
           />
         </div>
       </div>
