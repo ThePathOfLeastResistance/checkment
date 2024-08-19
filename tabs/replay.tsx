@@ -1,6 +1,7 @@
 import type { PlasmoCSConfig, PlasmoGetStyle } from "plasmo";
 import { useEffect, useRef, useState } from "react";
 
+// when I reload, everything is blank ????
 // should I add auto prefizer for css
 // https://tailwindcss.com/docs/browser-support#vendor-prefixes
 
@@ -9,7 +10,7 @@ import "../style.css";
 const DeltaFlyerPage = () => {
   const [message, setMessage] = useState();
   const [data, setData] = useState();
-  const [flags, setFlags] = useState();
+  const [flags, setFlags] = useState(null);
   const [mapping, setmap] = useState(null);
   const [sliderRange, setSliderRange] = useState();
   const [inputValue, setInputValue] = useState();
@@ -34,11 +35,16 @@ const DeltaFlyerPage = () => {
     console.log("Background script received a message:", request);
     setMessage(request.message);
     setData(request.data);
-    setFlags(request.flags);
-    setmap(request.map);
+    setFlags(Object.entries(request.flags));
+    setmap(Object.entries(request.map));
   });
 
-  console.log(mapping, data, flags, message);
+  if (message) {
+    console.log(mapping[0]);
+    console.log();
+    console.log(mapping[0][1]["color"]);
+  }
+
   console.log("Background script is running");
   return (
     <div className="w-screen h-screen px-20 pt-14">
@@ -50,7 +56,23 @@ const DeltaFlyerPage = () => {
         <div className="inline-block mx-4 ml-20">
           <h3 className="text-lg">Editors:</h3>
           <div className="flex flex-row my-2" role="group">
-            {message ? <h1>no</h1> : <h1>yes</h1>}
+            {message ? (
+              mapping.map((item) => (
+                <div className="flex flex-row items-center px-2 py-1 mr-1 border-2 border-black rounded">
+                  <svg
+                    height="18"
+                    width="18"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle r="8" cx="9" cy="9" fill={item[1]["color"]} />
+                  </svg>
+                  <h2 className="mx-1 text-base ">{item[1]["name"]}</h2>
+                </div>
+              ))
+            ) : (
+              // ))
+              <h1 className="text-base">None</h1>
+            )}
           </div>
         </div>
         <div className="inline-block mx-4">
@@ -188,10 +210,12 @@ const DeltaFlyerPage = () => {
                 fill="#FF0000"
               />
             </svg>
-            The morning sun, emitting light, interacted with dew-covered grass,
-            resulting in a golden hue across the meadow. Birds produced melodic
-            sounds, synchronized with the rustling of leaves on ancient oak
-            trees...
+            <h2 className="text-base">
+              The morning sun, emitting light, interacted with dew-covered
+              grass, resulting in a golden hue across the meadow. Birds produced
+              melodic sounds, synchronized with the rustling of leaves on
+              ancient oak trees...
+            </h2>
           </div>
         </div>
       </div>
