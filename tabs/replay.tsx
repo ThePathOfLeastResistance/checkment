@@ -40,9 +40,8 @@ const DeltaFlyerPage = () => {
   });
 
   if (message) {
-    console.log(mapping[0]);
-    console.log();
-    console.log(mapping[0][1]["color"]);
+    console.log(flags[0]);
+    console.log(flags[0]["text"]);
   }
 
   console.log("Background script is running");
@@ -196,27 +195,28 @@ const DeltaFlyerPage = () => {
           </div>
         </div>
         <div className="flex-col w-1/4 h-full">
-          <div className="flex-col p-4 my-4 bg-white border-2 border-black rounded">
-            <svg
-              width="14"
-              height="13"
-              viewBox="0 0 14 13"
-              fill="none"
-              className="mb-2"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M7.90692 11.7602C7.52803 12.4754 6.5008 12.4677 6.13269 11.7469L0.882767 1.46724C0.541462 0.798944 1.03047 0.00680816 1.78085 0.0124398L12.4344 0.0923944C13.1848 0.098026 13.6618 0.897412 13.3105 1.56051L7.90692 11.7602Z"
-                fill="#FF0000"
-              />
-            </svg>
-            <h2 className="text-base">
-              The morning sun, emitting light, interacted with dew-covered
-              grass, resulting in a golden hue across the meadow. Birds produced
-              melodic sounds, synchronized with the rustling of leaves on
-              ancient oak trees...
-            </h2>
-          </div>
+          {message ? (
+            flags.map((item) => (
+              <div className="flex-col w-full p-4 my-4 bg-white border-2 border-black rounded text-pretty">
+                <svg
+                  width="14"
+                  height="13"
+                  viewBox="0 0 14 13"
+                  fill="none"
+                  className="mb-2"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7.90692 11.7602C7.52803 12.4754 6.5008 12.4677 6.13269 11.7469L0.882767 1.46724C0.541462 0.798944 1.03047 0.00680816 1.78085 0.0124398L12.4344 0.0923944C13.1848 0.098026 13.6618 0.897412 13.3105 1.56051L7.90692 11.7602Z"
+                    fill="#FF0000"
+                  />
+                </svg>
+                <h2 className="text-base break-words">{item[1]["text"]}</h2>
+              </div>
+            ))
+          ) : (
+            <h1>none</h1>
+          )}
         </div>
       </div>
     </div>
