@@ -130,6 +130,7 @@ function DocButon() {
             console.log(resp);
             changeflag(resp[0]);
             changetime(resp[1]);
+            changeDocData(resp[2]);
           };
           fetchData();
         })

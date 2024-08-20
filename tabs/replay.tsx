@@ -9,12 +9,11 @@ import "../style.css";
 
 const DeltaFlyerPage = () => {
   const [message, setMessage] = useState();
-  const [data, setData] = useState();
+  const [data, setData] = useState(null);
   const [flags, setFlags] = useState(null);
   const [mapping, setmap] = useState(null);
-  const [sliderRange, setSliderRange] = useState(0);
-  const [inputValue, setInputValue] = useState();
-  const [array, setArray] = useState([]);
+  const [inputValue, setinputValue] = useState(0);
+  const [arrayW, setArray] = useState([]);
 
   useEffect(() => {
     document.body.style.backgroundColor = "#F1F6F9";
@@ -24,15 +23,9 @@ const DeltaFlyerPage = () => {
     };
   });
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      console.log("This will run every second!");
-      setArray((prevArray) => [...prevArray, 1]);
-    }, 1000);
-  }, []);
-
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log("Background script received a message:", request);
+
     setMessage(request.message);
     setData(request.data);
     setFlags(Object.entries(request.flags));
@@ -43,7 +36,15 @@ const DeltaFlyerPage = () => {
     console.log(flags[0]);
     console.log(flags[0]["text"]);
   }
-
+  useEffect(() => {
+    if (message) {
+      const interval = setInterval(() => {
+        setinputValue(inputValue + 1);
+        console.log("This will run every second!");
+        setArray((prevArray) => [...prevArray, data[inputValue]]);
+      }, 1000);
+    }
+  }, [message]);
   console.log("Background script is running");
   return (
     <div className="w-screen h-screen px-20 pt-14">
@@ -140,8 +141,8 @@ const DeltaFlyerPage = () => {
             className="w-full h-4 border-transparent rounded appearance-none cursor-col-resize transparent bg-[#9BA4B5]"
             id="customRange1"
             min={0}
-            max={100}
-            value={sliderRange}
+            max={message ? flags.length : 0}
+            value={inputValue}
           />
         </div>
       </div>
@@ -149,27 +150,13 @@ const DeltaFlyerPage = () => {
         <div className="flex flex-col items-center w-3/4 mr-5 overflow-auto min-w-[836px] h-[600px]">
           <div className="shrink-0 flex mt-8 bg-white border-2 h-[1056px] w-[816px]">
             <div className="px-20 py-20 w-[816px] text-base">
-              Tearing open my fifth packet of cookies, I devour them while
-              staring blankly at the screen. Before me, a laptop spewing forth a
-              jumble of words and symbols, which combine to form error code. To
-              many it may seem alien, but to me, the words point to the failure
-              of my code. As I stay glued to my chair, I ponder the reasons for
-              this error. Having only learned this programming language an hour
-              ago, my mind overflows with different theoretical possibilities.
-              Reading over the error message, I glanced over the clock only to
-              realize my estimate of time was off, by three folds, I started
-              learning this language 3 hours ago. In an attempt to make sense of
-              this discovery, I contemplate the past events, as if I could
-              somehow recover time from this retrospecrtion. Before I could
-              think further, my mind snapped back to the laptop as it wanted to
-              know why, why the code failed.  The morning sun, emitting light,
-              interacted with dew-covered grass, resulting in a golden hue
-              across the meadow. Birds produced melodic sounds, synchronized
-              with the rustling of leaves on ancient oak trees. A rabbit
-              appeared from behind a bush, its nose moving as it observed the
-              surroundings. In proximity, a brook produced a soft babbling
-              sound, its clear waters reflecting the sky. The scene represented
-              a moment of serenity, wher
+              {message ? (
+                arrayW.map((item) => (
+                  <p className="inline-block">{item["text"]}</p>
+                ))
+              ) : (
+                <p>none</p>
+              )}
             </div>
           </div>
           <div className="shrink-0 flex mt-8 bg-white border-2 h-[1056px] w-[816px]">
