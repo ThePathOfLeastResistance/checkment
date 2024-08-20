@@ -6,15 +6,21 @@ function IndexPopup() {
   const [count, increase] = useReducer((c) => c + 1, 0);
 
   return (
-    <div>
-      <div>
-        <button onClick={increase}>Increase</button>
+    <div className="p-6 bg-[#F1F6F9] rounded border-2 border-black">
+      <div className="flex justify-between">
+        <div className="block mx-2 my-4" role="group">
+          <button type="button">On</button>
+          <button type="button">Off</button>
+        </div>
         <h1>Checkmint</h1>
-        <button></button>
+        <div className="mx-2 my-4" role="group">
+          <button>Student</button>
+          <button>Teacher</button>
+        </div>
       </div>
-      <div>
+      <div className="flex flex-row items-center ">
         <div>
-          <div>
+          <div className="flex flex-row items-center ">
             <h2>Mode</h2>
             <svg
               width="14"
@@ -31,7 +37,7 @@ function IndexPopup() {
             </svg>
           </div>
           <button>Student/Teacher</button>
-          <div>
+          <div className="flex flex-row items-center ">
             <h2>AI guess strictness:</h2>
             <svg
               width="14"
@@ -48,7 +54,7 @@ function IndexPopup() {
             </svg>
           </div>
           <button>High Medium Light</button>
-          <div>
+          <div className="flex flex-row items-center ">
             <h2>AI guess strictness:</h2>
             <svg
               width="14"
@@ -68,7 +74,7 @@ function IndexPopup() {
         </div>
         <div>
           <div>
-            <h2>Display Bar</h2>
+            <h2 className="flex flex-row items-center ">Display Bar</h2>
             <svg
               width="14"
               height="13"
@@ -85,7 +91,7 @@ function IndexPopup() {
           </div>
           <button>1/2/custom</button>
           <div>
-            <h2>Feedback Form:</h2>
+            <h2 className="flex flex-row items-center ">Feedback Form:</h2>
             <svg
               width="14"
               height="13"
@@ -101,7 +107,7 @@ function IndexPopup() {
             </svg>
           </div>
           <button>here</button>
-          <div>
+          <div className="flex flex-row items-center ">
             <h2>Mode</h2>
             <svg
               width="14"
