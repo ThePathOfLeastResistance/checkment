@@ -6,16 +6,36 @@ function IndexPopup() {
   const [count, increase] = useReducer((c) => c + 1, 0);
 
   return (
-    <div className="p-6 bg-[#F1F6F9] rounded border-2 border-black">
-      <div className="flex justify-between">
-        <div className="block mx-2 my-4" role="group">
-          <button type="button">On</button>
-          <button type="button">Off</button>
+    <div className="p-6 bg-[#F1F6F9] border-2 border-black">
+      <div className="flex items-center justify-between">
+        <div className="flex mx-2 my-4" role="group">
+          <button
+            className="inline-block px-2 py-1 border-2 border-black rounded-l"
+            type="button"
+          >
+            On
+          </button>
+          <button
+            className="inline-block px-2 py-1 border-t-2 border-b-2 border-r-2 border-black rounded-r"
+            type="button"
+          >
+            Off
+          </button>
         </div>
-        <h1>Checkmint</h1>
-        <div className="mx-2 my-4" role="group">
-          <button>Student</button>
-          <button>Teacher</button>
+        <h1 className="text-base font-bold	text-[#212A3E] mx-5">Checkmint</h1>
+        <div className="flex mx-2 my-4" role="group">
+          <button
+            className="inline-block px-2 py-1 border-2 border-black rounded"
+            type="button"
+          >
+            Teacher
+          </button>
+          <button
+            className="inline-block px-2 py-1 border-2 border-black rounded"
+            type="button"
+          >
+            Student
+          </button>
         </div>
       </div>
       <div className="flex flex-row items-center ">
