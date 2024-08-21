@@ -14,6 +14,7 @@ const DeltaFlyerPage = () => {
   const [mapping, setmap] = useState(null);
   const [inputValue, setinputValue] = useState(0);
   const [arrayW, setArray] = useState([]);
+  const [, setDelay] = useState(1000);
 
   useEffect(() => {
     document.body.style.backgroundColor = "#F1F6F9";

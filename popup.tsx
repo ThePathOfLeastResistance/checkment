@@ -8,7 +8,7 @@ function IndexPopup() {
   return (
     <div className="p-6 bg-[#F1F6F9] border-2 border-black">
       <div className="flex items-center justify-between">
-        <div className="flex mx-2 my-4" role="group">
+        <div className="flex my-2" role="group">
           <button
             className="inline-block px-2 py-1 border-2 border-black rounded-l hover:bg-black hover:text-white"
             type="button"
@@ -23,7 +23,7 @@ function IndexPopup() {
           </button>
         </div>
         <h1 className="text-base font-bold	text-[#212A3E] mx-5">Checkmint</h1>
-        <div className="flex mx-2 my-4" role="group">
+        <div className="flex my-4" role="group">
           <button
             className="inline-block px-2 py-1 border-2 border-black rounded-l hover:bg-black hover:text-white"
             type="button"
@@ -56,7 +56,20 @@ function IndexPopup() {
               />
             </svg>
           </div>
-          <button>Student/Teacher</button>
+          <div className="flex my-2" role="group">
+            <button
+              className="inline-block px-2 py-1 mx-1 border-2 border-black rounded hover:bg-black hover:text-white"
+              type="button"
+            >
+              Student
+            </button>
+            <button
+              className="inline-block px-2 py-1 mx-1 border-2 border-black rounded hover:bg-black hover:text-white"
+              type="button"
+            >
+              Teacher
+            </button>
+          </div>
           <div className="flex flex-row items-center ">
             <h2>AI guess strictness:</h2>
             <svg
@@ -73,21 +86,21 @@ function IndexPopup() {
               />
             </svg>
           </div>
-          <div className="flex mx-2 my-4" role="group">
+          <div className="flex my-2" role="group">
             <button
-              className="inline-block px-2 py-1 mx-4 border-2 border-black rounded hover:bg-black hover:text-white"
+              className="inline-block px-2 py-1 mx-1 border-2 border-black rounded hover:bg-black hover:text-white"
               type="button"
             >
               High
             </button>
             <button
-              className="inline-block px-2 py-1 mx-4 border-2 border-black rounded hover:bg-black hover:text-white"
+              className="inline-block px-2 py-1 mx-1 border-2 border-black rounded hover:bg-black hover:text-white"
               type="button"
             >
               Medium
             </button>
             <button
-              className="inline-block px-2 py-1 mx-4 border border-black rounded 2 hover:bg-black hover:text-white"
+              className="inline-block px-2 py-1 mx-1 border border-black rounded 2 hover:bg-black hover:text-white"
               type="button"
             >
               High
@@ -128,21 +141,21 @@ function IndexPopup() {
               />
             </svg>
           </div>
-          <div className="flex mx-2 my-4" role="group">
+          <div className="flex my-2" role="group">
             <button
-              className="inline-block px-2 py-1 mx-4 border-2 border-black rounded hover:bg-black hover:text-white"
+              className="inline-block px-2 py-1 mx-1 border-2 border-black rounded hover:bg-black hover:text-white"
               type="button"
             >
               1
             </button>
             <button
-              className="inline-block px-2 py-1 mx-4 border-2 border-black rounded hover:bg-black hover:text-white"
+              className="inline-block px-2 py-1 mx-1 border-2 border-black rounded hover:bg-black hover:text-white"
               type="button"
             >
               2
             </button>
             <button
-              className="inline-block px-2 py-1 mx-4 border border-black rounded 2 hover:bg-black hover:text-white"
+              className="inline-block px-2 py-1 mx-1 border border-black rounded 2 hover:bg-black hover:text-white"
               type="button"
             >
               Custom
@@ -186,7 +199,20 @@ function IndexPopup() {
               />
             </svg>
           </div>
-          <button>light/dark</button>
+          <div className="flex my-2" role="group">
+            <button
+              className="inline-block px-2 py-1 mx-1 border-2 border-black rounded hover:bg-black hover:text-white"
+              type="button"
+            >
+              Light
+            </button>
+            <button
+              className="inline-block px-2 py-1 mx-1 border-2 border-black rounded hover:bg-black hover:text-white"
+              type="button"
+            >
+              Dark
+            </button>
+          </div>
         </div>
       </div>
     </div>
