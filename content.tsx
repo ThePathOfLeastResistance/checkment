@@ -8,14 +8,7 @@ import type { PlasmoCSConfig, PlasmoGetStyle } from "plasmo";
 import { createRoot } from "react-dom/client";
 import { sendToBackground } from "@plasmohq/messaging";
 
-import styleText from "data-text:./style.module.css";
-import * as style from "./style.module.css";
-
-export const getStyle = () => {
-  const style = document.createElement("style");
-  style.textContent = styleText;
-  return style;
-};
+import style from "./style.css";
 
 export const config: PlasmoCSConfig = {
   matches: ["https://docs.google.com/document/*"],
@@ -161,17 +154,17 @@ function DocButon() {
           fetchData();
         }}
       >
-        <div className={style.buttondiv}>
-          <h1 className={style.header}>Revision:</h1>
-          <h2 className={style.text}>{rev[1] ? rev[0] : 0}</h2>
+        <div className="bg-[#F1F6F9] border-2 border-[#394867] text-[#212A3E]">
+          <h1 className="">Revision:</h1>
+          <h2 className="">{rev[1] ? rev[0] : 0}</h2>
         </div>
-        <div className={style.buttondiv}>
-          <h1 className={style.header}>Copies:</h1>
-          <h2 className={style.text}>{flaglog.length}</h2>
+        <div className="">
+          <h1 className="">Copies:</h1>
+          <h2 className="">{flaglog.length}</h2>
         </div>
-        <div className={style.buttondiv}>
-          <h1 className={style.header}>Time Spent:</h1>
-          <h2 className={style.text}>{Math.round(tim)} minutes</h2>
+        <div className="">
+          <h1 className="">Time Spent:</h1>
+          <h2 className="">{Math.round(tim)} minutes</h2>
         </div>
       </button>
     );
