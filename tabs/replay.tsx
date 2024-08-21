@@ -39,10 +39,19 @@ const DeltaFlyerPage = () => {
   useEffect(() => {
     if (message) {
       const interval = setInterval(() => {
-        setinputValue(inputValue + 1);
-        console.log("This will run every second!");
-        setArray((prevArray) => [...prevArray, data[inputValue]]);
-      }, 1000);
+        setinputValue((inputValue) => {
+          const newValue = inputValue + 1;
+          console.log(
+            "This will run every second!",
+            inputValue,
+            data[inputValue]
+          );
+          setArray((prevArray) => [...prevArray, data[inputValue]]);
+          return newValue;
+        }),
+          1000;
+      });
+      return () => clearInterval(interval);
     }
   }, [message]);
   console.log("Background script is running");
