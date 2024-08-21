@@ -10,13 +10,13 @@ function IndexPopup() {
       <div className="flex items-center justify-between">
         <div className="flex mx-2 my-4" role="group">
           <button
-            className="inline-block px-2 py-1 border-2 border-black rounded-l"
+            className="inline-block px-2 py-1 border-2 border-black rounded-l hover:bg-black hover:text-white"
             type="button"
           >
             On
           </button>
           <button
-            className="inline-block px-2 py-1 border-t-2 border-b-2 border-r-2 border-black rounded-r"
+            className="inline-block px-2 py-1 border-t-2 border-b-2 border-r-2 border-black rounded-r hover:bg-black hover:text-white"
             type="button"
           >
             Off
@@ -25,13 +25,13 @@ function IndexPopup() {
         <h1 className="text-base font-bold	text-[#212A3E] mx-5">Checkmint</h1>
         <div className="flex mx-2 my-4" role="group">
           <button
-            className="inline-block px-2 py-1 border-2 border-black rounded"
+            className="inline-block px-2 py-1 border-2 border-black rounded-l hover:bg-black hover:text-white"
             type="button"
           >
             Teacher
           </button>
           <button
-            className="inline-block px-2 py-1 border-2 border-black rounded"
+            className="inline-block px-2 py-1 border-t-2 border-b-2 border-r-2 border-black rounded-r hover:bg-black hover:text-white"
             type="button"
           >
             Student
@@ -73,7 +73,26 @@ function IndexPopup() {
               />
             </svg>
           </div>
-          <button>High Medium Light</button>
+          <div className="flex mx-2 my-4" role="group">
+            <button
+              className="inline-block px-2 py-1 mx-4 border-2 border-black rounded hover:bg-black hover:text-white"
+              type="button"
+            >
+              High
+            </button>
+            <button
+              className="inline-block px-2 py-1 mx-4 border-2 border-black rounded hover:bg-black hover:text-white"
+              type="button"
+            >
+              Medium
+            </button>
+            <button
+              className="inline-block px-2 py-1 mx-4 border border-black rounded 2 hover:bg-black hover:text-white"
+              type="button"
+            >
+              High
+            </button>
+          </div>
           <div className="flex flex-row items-center ">
             <h2>AI guess strictness:</h2>
             <svg
@@ -90,7 +109,7 @@ function IndexPopup() {
               />
             </svg>
           </div>
-          <button>High Medium Light</button>
+          <button>TBH</button>
         </div>
         <div>
           <div>
@@ -109,7 +128,26 @@ function IndexPopup() {
               />
             </svg>
           </div>
-          <button>1/2/custom</button>
+          <div className="flex mx-2 my-4" role="group">
+            <button
+              className="inline-block px-2 py-1 mx-4 border-2 border-black rounded hover:bg-black hover:text-white"
+              type="button"
+            >
+              1
+            </button>
+            <button
+              className="inline-block px-2 py-1 mx-4 border-2 border-black rounded hover:bg-black hover:text-white"
+              type="button"
+            >
+              2
+            </button>
+            <button
+              className="inline-block px-2 py-1 mx-4 border border-black rounded 2 hover:bg-black hover:text-white"
+              type="button"
+            >
+              Custom
+            </button>
+          </div>
           <div>
             <h2 className="flex flex-row items-center ">Feedback Form:</h2>
             <svg
@@ -126,7 +164,12 @@ function IndexPopup() {
               />
             </svg>
           </div>
-          <button>here</button>
+          <button
+            className="inline-block px-2 py-1 mx-4 border border-black rounded 2 hover:bg-black hover:text-white"
+            type="button"
+          >
+            Here
+          </button>
           <div className="flex flex-row items-center ">
             <h2>Mode</h2>
             <svg
