@@ -8,7 +8,14 @@ import type { PlasmoCSConfig, PlasmoGetStyle } from "plasmo";
 import { createRoot } from "react-dom/client";
 import { sendToBackground } from "@plasmohq/messaging";
 
-import style from "./style.css";
+import cssText from "data-text:~style.css";
+import "./style.css"; // Import Tailwind CSS
+
+export const getStyle: PlasmoGetStyle = () => {
+  const style = document.createElement("style");
+  style.textContent = cssText;
+  return style;
+};
 
 export const config: PlasmoCSConfig = {
   matches: ["https://docs.google.com/document/*"],
@@ -136,7 +143,7 @@ function DocButon() {
   if (rev !== null && flaglog !== null) {
     return (
       <button
-        className={style.docbutton}
+        className="bg-[#F1F6F9] border-2 border-[#394867] rounded flex flex-row items-center px-3 py-2 text-[#212A3E] text-base font-bold"
         onClick={() => {
           const fetchData = async () => {
             console.log("sending to background");
@@ -154,18 +161,14 @@ function DocButon() {
           fetchData();
         }}
       >
-        <div className="bg-[#F1F6F9] border-2 border-[#394867] text-[#212A3E]">
-          <h1 className="">Revision:</h1>
-          <h2 className="">{rev[1] ? rev[0] : 0}</h2>
-        </div>
-        <div className="">
-          <h1 className="">Copies:</h1>
-          <h2 className="">{flaglog.length}</h2>
-        </div>
-        <div className="">
-          <h1 className="">Time Spent:</h1>
-          <h2 className="">{Math.round(tim)} minutes</h2>
-        </div>
+        <h1 className="inline-block ml-2 mr-1">Edits:</h1>
+        <h2 className="inline-block mr-2">{rev[1] ? rev[0] : 0}</h2>
+
+        <h1 className="inline-block ml-2 mr-1">Copies:</h1>
+        <h2 className="inline-block mr-2">{flaglog.length}</h2>
+
+        <h1 className="inline-block ml-2 mr-1">Time Spent:</h1>
+        <h2 className="inline-block mr-2">{Math.round(tim)} minutes</h2>
       </button>
     );
   } else {
