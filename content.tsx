@@ -143,7 +143,7 @@ function DocButon() {
   if (rev !== null && flaglog !== null) {
     return (
       <button
-        className="bg-[#F1F6F9] border-2 border-[#394867] rounded flex flex-row items-center px-3 py-2 text-[#212A3E] text-base font-bold"
+        className="bg-[#F1F6F9] border-2 border-[#394867] rounded flex flex-row items-center px-2 py-1 text-[#212A3E] text-base font-bold"
         onClick={() => {
           const fetchData = async () => {
             console.log("sending to background");
@@ -172,7 +172,11 @@ function DocButon() {
       </button>
     );
   } else {
-    return <button>loading</button>;
+    return (
+      <button className="bg-[#F1F6F9] border-2 border-[#394867] rounded px-2 py-1 ">
+        <h1 className="inline-block ml-2 mr-1">Loading...</h1>
+      </button>
+    );
   }
 }
 
