@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 // when I reload, everything is blank ????
 // should I add auto prefizer for css
 // https://tailwindcss.com/docs/browser-support#vendor-prefixes
+// the delay does not work
 
 import "../style.css";
 
@@ -14,7 +15,8 @@ const DeltaFlyerPage = () => {
   const [mapping, setmap] = useState(null);
   const [inputValue, setinputValue] = useState(0);
   const [arrayW, setArray] = useState([]);
-  const [, setDelay] = useState(1000);
+  const [delay, setDelay] = useState(100000);
+  const [status, setStatus] = useState(true);
 
   useEffect(() => {
     document.body.style.backgroundColor = "#F1F6F9";
@@ -33,12 +35,8 @@ const DeltaFlyerPage = () => {
     setmap(Object.entries(request.map));
   });
 
-  if (message) {
-    console.log(flags[0]);
-    console.log(flags[0]["text"]);
-  }
   useEffect(() => {
-    if (message) {
+    if (message && status) {
       const interval = setInterval(() => {
         setinputValue((inputValue) => {
           const newValue = inputValue + 1;
@@ -50,7 +48,7 @@ const DeltaFlyerPage = () => {
           setArray((prevArray) => [...prevArray, data[inputValue]]);
           return newValue;
         }),
-          1000;
+          delay;
       });
       return () => clearInterval(interval);
     }
@@ -90,17 +88,20 @@ const DeltaFlyerPage = () => {
           <div className="block my-2 rounded shadow-sm" role="group">
             <button
               type="button"
+              onClick={() => setDelay(1000)}
               className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 "
             >
               1
             </button>
             <button
+              onClick={() => setDelay(1500)}
               type="button"
               className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100"
             >
               1.5
             </button>
             <button
+              onClick={() => setDelay(2000)}
               type="button"
               className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100"
             >
@@ -108,12 +109,14 @@ const DeltaFlyerPage = () => {
             </button>
             <button
               type="button"
+              onClick={() => setDelay(3000)}
               className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100"
             >
               3
             </button>
             <button
               type="button"
+              onClick={() => setDelay(5000)}
               className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100"
             >
               5
@@ -151,7 +154,7 @@ const DeltaFlyerPage = () => {
             className="w-full h-4 border-transparent rounded appearance-none cursor-col-resize transparent bg-[#9BA4B5]"
             id="customRange1"
             min={0}
-            max={message ? flags.length : 0}
+            max={message ? data.length : 0}
             value={inputValue}
           />
         </div>
@@ -162,7 +165,10 @@ const DeltaFlyerPage = () => {
             <div className="px-20 py-20 w-[816px] text-base">
               {message ? (
                 arrayW.map((item) => (
-                  <p className="inline-block">{item["text"]}</p>
+                  <p className="inline-block">
+                    {item["text"]}
+                    {inputValue}
+                  </p>
                 ))
               ) : (
                 <p>none</p>
@@ -193,7 +199,7 @@ const DeltaFlyerPage = () => {
           </div>
         </div>
         <div className="flex-col w-1/4 h-full">
-          {message ? (
+          {message && flags.length != 0 ? (
             flags.map((item) => (
               <div className="flex-col w-full p-4 my-4 bg-white border-2 border-black rounded text-pretty">
                 <svg
