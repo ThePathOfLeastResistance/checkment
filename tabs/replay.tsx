@@ -78,7 +78,6 @@ const DeltaFlyerPage = () => {
                 </div>
               ))
             ) : (
-              // ))
               <h1 className="text-base">None</h1>
             )}
           </div>
@@ -134,7 +133,7 @@ const DeltaFlyerPage = () => {
               viewBox="0 0 11 13"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="mr-1"
+              className="ml-1"
             >
               <path
                 d="M10.5 5.63398C11.1667 6.01888 11.1667 6.98113 10.5 7.36603L2.25 12.1292C1.58333 12.5141 0.75 12.0329 0.75 11.2631L0.75 1.73686C0.75 0.967059 1.58333 0.485935 2.25 0.870835L10.5 5.63398Z"
