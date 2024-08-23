@@ -22,7 +22,7 @@ function IndexPopup() {
             Off
           </button>
         </div>
-        <h1 className="text-base font-bold	text-[#212A3E] mx-5">Checkmint</h1>
+        <h1 className="text-lg font-bold	text-[#212A3E] mx-5">Checkmint</h1>
         <div className="flex my-4" role="group">
           <button
             className="inline-block px-2 py-1 border-2 border-black rounded-l hover:bg-black hover:text-white"
@@ -41,7 +41,7 @@ function IndexPopup() {
       <div className="flex flex-row items-center ">
         <div>
           <div className="flex flex-row items-center ">
-            <h2>Mode</h2>
+            <h2 className="text-base">Mode</h2>
             <a>
               <svg
                 width="14"
@@ -74,7 +74,7 @@ function IndexPopup() {
             </button>
           </div>
           <div className="flex flex-row items-center ">
-            <h2>AI guess strictness:</h2>
+            <h2 className="text-base">AI guess strictness:</h2>
             <a>
               <svg
                 width="14"
@@ -113,7 +113,7 @@ function IndexPopup() {
             </button>
           </div>
           <div className="flex flex-row items-center ">
-            <h2>AI guess strictness:</h2>
+            <h2 className="text-base">AI guess strictness:</h2>
             <a>
               <svg
                 width="14"
@@ -134,8 +134,8 @@ function IndexPopup() {
           <button>TBH</button>
         </div>
         <div>
-          <div>
-            <h2 className="flex flex-row items-center ">Display Bar</h2>
+          <div className="flex flex-row items-center">
+            <h2 className="">Display Bar</h2>
             <a>
               <svg
                 width="14"
@@ -173,8 +173,8 @@ function IndexPopup() {
               Custom
             </button>
           </div>
-          <div>
-            <h2 className="flex flex-row items-center ">Feedback Form:</h2>
+          <div className="flex flex-row items-center ">
+            <h2 className="text-base">Feedback Form:</h2>
             <a>
               <svg
                 width="14"
@@ -193,13 +193,13 @@ function IndexPopup() {
             </a>
           </div>
           <button
-            className="inline-block px-2 py-1 mx-4 border border-black rounded 2 hover:bg-black hover:text-white"
+            className="inline-block px-2 py-1 border border-black rounded 2 hover:bg-black hover:text-white"
             type="button"
           >
             Here
           </button>
           <div className="flex flex-row items-center ">
-            <h2>Mode</h2>
+            <h2 className="text-base">Mode</h2>
             <a>
               <svg
                 width="14"
