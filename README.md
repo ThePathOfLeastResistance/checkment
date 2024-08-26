@@ -6,6 +6,13 @@ Checkmint is a chrome extension that replays students writing process, while als
 
 ## Demo 👀
 It is not finsihed as I just started learning React, so check back on me soon :) There are still some bugs and issues. 
+
+
+
+https://github.com/user-attachments/assets/2577769b-39e3-4cb5-84b1-e9b31217ea74
+
+
+
 The pannel in the middle is the real time replay of the students wirting, and the pannel to the side is all the text that was copied from a external source
 ## Introduction 
 
