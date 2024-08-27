@@ -33,12 +33,6 @@ Check click here: https://docs.plasmo.com/framework
 
 
 
-## Features
-
-- Light/dark mode toggle
-- Live previews
-- Fullscreen mode
-- Cross platform
 
 
 ## Tech Stack
