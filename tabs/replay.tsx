@@ -15,9 +15,8 @@ const DeltaFlyerPage = () => {
   const [mapping, setmap] = useState(null);
   const [inputValue, setinputValue] = useState(0);
   const [arrayW, setArray] = useState([]);
-  const [delay, setDelay] = useState(2000);
+  const [delay, setDelay] = useState(1000);
   const [status, setStatus] = useState(false);
-
   useEffect(() => {
     document.body.style.backgroundColor = "#F1F6F9";
 
@@ -48,7 +47,7 @@ const DeltaFlyerPage = () => {
           setArray((prevArray) => [...prevArray, data[inputValue]]);
           return newValue;
         });
-      }, 500);
+      }, delay);
       return () => clearInterval(interval);
     }
   }, [message, status]);
@@ -89,7 +88,7 @@ const DeltaFlyerPage = () => {
               onClick={() => setDelay(1000)}
               className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 "
             >
-              1
+              Real Time
             </button>
             <button
               onClick={() => setDelay(1500)}
@@ -124,7 +123,12 @@ const DeltaFlyerPage = () => {
       </div>
       <div className="flex my-2 align-middle">
         <div className="inline-block mr-4">
-          <button className="flex flex-row items-center px-2 py-1 rounded outline outline-2 ">
+          <button
+            className={`flex flex-row items-center px-2 py-1 rounded outline outline-2 hover:bg-black hover:text-white ${status ? "bg-black text-white" : "bg-white"}  `}
+            onClick={() => {
+              status ? setStatus(false) : setStatus(true);
+            }}
+          >
             {" "}
             <svg
               width="11"
@@ -132,23 +136,14 @@ const DeltaFlyerPage = () => {
               viewBox="0 0 11 13"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="ml-1"
+              className="mr-1"
             >
               <path
                 d="M10.5 5.63398C11.1667 6.01888 11.1667 6.98113 10.5 7.36603L2.25 12.1292C1.58333 12.5141 0.75 12.0329 0.75 11.2631L0.75 1.73686C0.75 0.967059 1.58333 0.485935 2.25 0.870835L10.5 5.63398Z"
                 fill="black"
               />
             </svg>
-            <h2
-              className="text-sm"
-              onClick={() => {
-                {
-                  status ? setStatus(false) : setStatus(true);
-                }
-              }}
-            >
-              Play
-            </h2>
+            <h2 className="text-sm">Play</h2>
           </button>
         </div>
         <div className="flex items-center justify-center w-full">
@@ -173,12 +168,27 @@ const DeltaFlyerPage = () => {
         <div className="flex flex-col items-center w-3/4 mr-5 overflow-auto min-w-[836px] h-[600px]">
           <div className="shrink-0 flex mt-8 bg-white border-2 h-[1056px] w-[816px]">
             <div className="px-20 py-20 w-[816px] text-base">
-              {message && status ? (
-                arrayW.map((item) => (
-                  <p className="inline-block">{item["text"]}</p>
+              {message ? (
+                arrayW.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`inline-block ${
+                      index == arrayW.length
+                        ? mapping[item.user].color
+                        : "bg-black"
+                    }`}
+                  >
+                    {item.text == "/n" ? (
+                      <br />
+                    ) : item.text == "ds" ? (
+                      <h1>heloo</h1>
+                    ) : (
+                      <p className="inline-block">{item["text"]}</p>
+                    )}
+                  </div>
                 ))
               ) : (
-                <p> </p>
+                <p>The student made no edits</p>
               )}
             </div>
           </div>
