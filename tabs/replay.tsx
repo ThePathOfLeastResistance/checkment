@@ -15,8 +15,8 @@ const DeltaFlyerPage = () => {
   const [mapping, setmap] = useState(null);
   const [inputValue, setinputValue] = useState(0);
   const [arrayW, setArray] = useState([]);
-  const [delay, setDelay] = useState(100000);
-  const [status, setStatus] = useState(true);
+  const [delay, setDelay] = useState(2000);
+  const [status, setStatus] = useState(false);
 
   useEffect(() => {
     document.body.style.backgroundColor = "#F1F6F9";
@@ -25,7 +25,7 @@ const DeltaFlyerPage = () => {
       document.body.style.backgroundColor = "transparent";
     };
   });
-
+  console.log(status);
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log("Background script received a message:", request);
 
@@ -47,12 +47,11 @@ const DeltaFlyerPage = () => {
           );
           setArray((prevArray) => [...prevArray, data[inputValue]]);
           return newValue;
-        }),
-          delay;
-      });
+        });
+      }, 500);
       return () => clearInterval(interval);
     }
-  }, [message]);
+  }, [message, status]);
   console.log("Background script is running");
   return (
     <div className="w-screen h-screen px-20 pt-14">
@@ -140,7 +139,14 @@ const DeltaFlyerPage = () => {
                 fill="black"
               />
             </svg>
-            <h2 className="text-sm">Play</h2>
+            <h2
+              className="text-sm"
+              onClick={() => {
+                setStatus(true);
+              }}
+            >
+              Play
+            </h2>
           </button>
         </div>
         <div className="flex items-center justify-center w-full">
@@ -162,15 +168,12 @@ const DeltaFlyerPage = () => {
         <div className="flex flex-col items-center w-3/4 mr-5 overflow-auto min-w-[836px] h-[600px]">
           <div className="shrink-0 flex mt-8 bg-white border-2 h-[1056px] w-[816px]">
             <div className="px-20 py-20 w-[816px] text-base">
-              {message ? (
+              {message && status ? (
                 arrayW.map((item) => (
-                  <p className="inline-block">
-                    {item["text"]}
-                    {inputValue}
-                  </p>
+                  <p className="inline-block">{item["text"]}</p>
                 ))
               ) : (
-                <p>none</p>
+                <p> </p>
               )}
             </div>
           </div>
