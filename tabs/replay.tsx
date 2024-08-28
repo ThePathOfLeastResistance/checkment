@@ -17,6 +17,7 @@ const DeltaFlyerPage = () => {
   const [arrayW, setArray] = useState([]);
   const [delay, setDelay] = useState(1000);
   const [status, setStatus] = useState(false);
+  const [indexstate, setIndex] = useState(0);
   useEffect(() => {
     document.body.style.backgroundColor = "#F1F6F9";
 
@@ -24,7 +25,7 @@ const DeltaFlyerPage = () => {
       document.body.style.backgroundColor = "transparent";
     };
   });
-  console.log(status);
+  console.log(arrayW);
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log("Background script received a message:", request);
 
@@ -47,8 +48,8 @@ const DeltaFlyerPage = () => {
           setArray((prevArray) => [...prevArray, data[inputValue]]);
           return newValue;
         });
-      }, delay);
-      return () => clearInterval(interval);
+      }, data[inputValue + 1][] data[inputValue]);
+      return () => clearInterval(interval);  getMilliseconds();
     }
   }, [message, status]);
   console.log("Background script is running");
@@ -171,9 +172,7 @@ const DeltaFlyerPage = () => {
               {message ? (
                 arrayW.map((item, index) => {
                   if (item.text == "ds") {
-                    arrayW.pop();
-                    const newarray = arrayW;
-                    setArray(newarray);
+                    setArray(arrayW.slice(0, -2));
                     return <p> </p>;
                   }
                   return (
