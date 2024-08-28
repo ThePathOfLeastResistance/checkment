@@ -15,7 +15,7 @@ const DeltaFlyerPage = () => {
   const [mapping, setmap] = useState(null);
   const [inputValue, setinputValue] = useState(0);
   const [arrayW, setArray] = useState([]);
-  const [delay, setDelay] = useState(1000);
+  const [delay, setDelay] = useState(1);
   const [status, setStatus] = useState(false);
   const [indexstate, setIndex] = useState(0);
   useEffect(() => {
@@ -37,19 +37,25 @@ const DeltaFlyerPage = () => {
 
   useEffect(() => {
     if (message && status) {
-      const interval = setInterval(() => {
-        setinputValue((inputValue) => {
-          const newValue = inputValue + 1;
-          console.log(
-            "This will run every second!",
-            inputValue,
-            data[inputValue]
-          );
-          setArray((prevArray) => [...prevArray, data[inputValue]]);
-          return newValue;
-        });
-      }, data[inputValue + 1][] data[inputValue]);
-      return () => clearInterval(interval);  getMilliseconds();
+      const interval = setInterval(
+        () => {
+          setinputValue((inputValue) => {
+            const newValue = inputValue + 1;
+            console.log(
+              "This will run every second!",
+              inputValue,
+              data[inputValue]
+            );
+            setArray((prevArray) => [...prevArray, data[inputValue]]);
+            return newValue;
+          });
+        },
+        delay === 1
+          ? data[inputValue + 1].time.getMilliseconds() -
+              data[inputValue].time.getMilliseconds()
+          : delay
+      );
+      return () => clearInterval(interval);
     }
   }, [message, status]);
   console.log("Background script is running");
