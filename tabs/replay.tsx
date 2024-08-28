@@ -43,17 +43,15 @@ const DeltaFlyerPage = () => {
             const newValue = inputValue + 1;
             console.log(
               "This will run every second!",
-              inputValue,
-              data[inputValue]
+              (data[inputValue + 1].sec - data[inputValue].sec) / delay
             );
+            console;
             setArray((prevArray) => [...prevArray, data[inputValue]]);
             return newValue;
           });
         },
-        delay === 1
-          ? data[inputValue + 1].time.getMilliseconds() -
-              data[inputValue].time.getMilliseconds()
-          : delay
+
+        (data[inputValue + 1].sec - data[inputValue].sec) / delay
       );
       return () => clearInterval(interval);
     }
@@ -92,20 +90,20 @@ const DeltaFlyerPage = () => {
           <div className="block my-2 rounded shadow-sm" role="group">
             <button
               type="button"
-              onClick={() => setDelay(1000)}
+              onClick={() => setDelay(1)}
               className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 "
             >
               Real Time
             </button>
             <button
-              onClick={() => setDelay(1500)}
+              onClick={() => setDelay(1.5)}
               type="button"
               className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100"
             >
               1.5
             </button>
             <button
-              onClick={() => setDelay(2000)}
+              onClick={() => setDelay(2)}
               type="button"
               className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100"
             >
@@ -113,14 +111,14 @@ const DeltaFlyerPage = () => {
             </button>
             <button
               type="button"
-              onClick={() => setDelay(3000)}
+              onClick={() => setDelay(3)}
               className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100"
             >
               3
             </button>
             <button
               type="button"
-              onClick={() => setDelay(5000)}
+              onClick={() => setDelay(10)}
               className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100"
             >
               5
@@ -175,30 +173,20 @@ const DeltaFlyerPage = () => {
         <div className="flex flex-col items-center w-3/4 mr-5 overflow-auto min-w-[836px] h-[600px]">
           <div className="shrink-0 flex mt-8 bg-white border-2 h-[1056px] w-[816px]">
             <div className="px-20 py-20 w-[816px] text-base">
-              {message ? (
-                arrayW.map((item, index) => {
-                  if (item.text == "ds") {
-                    setArray(arrayW.slice(0, -2));
-                    return <p> </p>;
-                  }
-                  return (
-                    <div
-                      key={index}
-                      className={`inline-block bg-[${
-                        index == arrayW.length ? "helloooo" : null
-                      }] bg-opacity-25`}
-                    >
-                      {item.text == "/n" ? (
-                        <br />
-                      ) : (
-                        <p className="inline-block">{item["text"]}</p>
-                      )}
-                    </div>
-                  );
-                })
-              ) : (
-                <p>The student made no edits</p>
-              )}
+              <p className="inline-block">
+                {message ? (
+                  arrayW.map((item, index) => {
+                    if (item.text == "ds") {
+                      arrayW.splice(item.index[0] - 1, 1);
+                      setArray(arrayW);
+                      return;
+                    }
+                    return item.text == "/n" ? "/n" : item.text;
+                  })
+                ) : (
+                  <p>The student made no edits</p>
+                )}
+              </p>
             </div>
           </div>
         </div>
